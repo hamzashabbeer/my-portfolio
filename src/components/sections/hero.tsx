@@ -25,6 +25,14 @@ const socialLinks = [
   },
 ];
 
+// Pre-generate particle positions to avoid hydration mismatch
+const particles = Array.from({ length: 20 }, () => ({
+  x: Math.floor(Math.random() * 100),
+  y: Math.floor(Math.random() * 100),
+  duration: Math.random() * 2 + 2,
+  delay: Math.random() * 2,
+}));
+
 export function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const heroRef = useRef<HTMLElement>(null);
@@ -67,10 +75,11 @@ export function Hero() {
         />
         
         {/* Animated Particles */}
-        {[...Array(20)].map((_, i) => (
+        {particles.map((particle, i) => (
           <motion.div
             key={i}
             className="particle absolute w-1 h-1 bg-primary/50 rounded-full"
+            initial={{ x: 0, y: 0, opacity: 0, scale: 0 }}
             animate={{
               x: [0, Math.random() * 400 - 200],
               y: [0, Math.random() * 400 - 200],
@@ -78,13 +87,13 @@ export function Hero() {
               scale: [0, 1.5, 0],
             }}
             transition={{
-              duration: Math.random() * 2 + 2,
+              duration: particle.duration,
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: particle.delay,
             }}
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
             }}
           />
         ))}
@@ -134,7 +143,7 @@ export function Hero() {
                   transition={{ duration: 0.5, delay: 0.4 }}
                   className="text-reveal block"
                 >
-                  Hi, I'm{" "}
+                  Hi, I&apos;m{" "}
                 </motion.span>
                 <motion.span
                   initial={{ x: 100, opacity: 0 }}
@@ -188,12 +197,12 @@ export function Hero() {
                 { label: "Experience", value: "2+ Years" },
                 { label: "Projects", value: "10+" },
                 { label: "Technologies", value: "15+" },
-              ].map((stat, index) => (
+              ].map((stat) => (
                 <motion.div
                   key={stat.label}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
+                  transition={{ duration: 0.5, delay: 1.2 }}
                   className="glass-effect rounded-xl p-4 text-center card-3d hover-lift"
                 >
                   <motion.p
