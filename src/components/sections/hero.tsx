@@ -229,7 +229,7 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 1.5 }}
               className="flex items-center gap-4"
             >
-              {socialLinks.map((social, index) => (
+              {socialLinks.map((social) => (
                 <motion.a
                   key={social.name}
                   href={social.href}
