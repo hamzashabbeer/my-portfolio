@@ -25,13 +25,18 @@ const socialLinks = [
   },
 ];
 
-// Pre-generate particle positions to avoid hydration mismatch
-const particles = Array.from({ length: 20 }, () => ({
-  x: Math.floor(Math.random() * 100),
-  y: Math.floor(Math.random() * 100),
-  duration: Math.random() * 2 + 2,
-  delay: Math.random() * 2,
-}));
+// Pre-generate fixed particle positions to avoid hydration mismatch
+const particles = Array.from({ length: 20 }, (_, i) => {
+  const seed = i / 20; // Use index to generate deterministic values
+  return {
+    x: Math.round(seed * 100), // Round to avoid decimal mismatches
+    y: Math.round((seed * 7919) % 100), // Use prime number for better distribution
+    duration: 2 + (seed * 2), // Duration between 2-4 seconds
+    delay: seed * 2, // Delay between 0-2 seconds
+    moveX: Math.round(200 - (seed * 400)), // Movement range -200 to 200
+    moveY: Math.round(200 - ((seed * 7919) % 400)) // Different movement range for Y
+  };
+});
 
 export function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -79,10 +84,13 @@ export function Hero() {
           <motion.div
             key={i}
             className="particle absolute w-1 h-1 bg-primary/50 rounded-full"
-            initial={{ x: 0, y: 0, opacity: 0, scale: 0 }}
+            style={{
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+            }}
             animate={{
-              x: [0, Math.random() * 400 - 200],
-              y: [0, Math.random() * 400 - 200],
+              x: [0, particle.moveX],
+              y: [0, particle.moveY],
               opacity: [0, 1, 0],
               scale: [0, 1.5, 0],
             }}
@@ -90,10 +98,7 @@ export function Hero() {
               duration: particle.duration,
               repeat: Infinity,
               delay: particle.delay,
-            }}
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
+              ease: "easeInOut",
             }}
           />
         ))}
