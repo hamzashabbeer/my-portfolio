@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', sans-serif;
+  }
+
+  :root {
+    --background: 232 47% 5%;
+    --foreground: 60 30% 96%;
+    
+    --primary: 252 95% 70%;
+    --primary-foreground: 60 30% 96%;
+    
+    --secondary: 232 47% 10%;
+    --secondary-foreground: 60 30% 96%;
+    
+    --accent: 252 95% 70%;
+    --accent-foreground: 60 30% 96%;
+    
+    --card: 232 47% 5%;
+    --card-foreground: 60 30% 96%;
+    
+    --popover: 232 47% 5%;
+    --popover-foreground: 60 30% 96%;
+    
+    --muted: 232 47% 20%;
+    --muted-foreground: 60 30% 96%;
+    
+    --border: 232 47% 15%;
+    --input: 232 47% 15%;
+    --ring: 252 95% 70%;
+    
+    --radius: 0.5rem;
+  }
+
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 232 47% 5%;
+    
+    --primary: 252 95% 70%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 232 47% 5%;
+    
+    --accent: 252 95% 70%;
+    --accent-foreground: 0 0% 100%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 232 47% 5%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 232 47% 5%;
+    
+    --muted: 240 5% 96%;
+    --muted-foreground: 232 47% 45%;
+    
+    --border: 232 47% 90%;
+    --input: 232 47% 90%;
+    --ring: 252 95% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+  h1 {
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl;
+  }
+  h2 {
+    @apply text-3xl sm:text-4xl md:text-5xl;
+  }
+  h3 {
+    @apply text-2xl sm:text-3xl md:text-4xl;
+  }
+  p {
+    @apply leading-relaxed;
+  }
+}
+
+/* Advanced Animations */
+@keyframes morph {
+  0% {
+    border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40%/50% 60% 30% 60%;
+  }
+  100% {
+    border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
+  }
+}
+
+.animate-morph {
+  animation: morph 8s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--primary)) 0%,
+    hsl(var(--accent)) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-gradient {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--primary)) 0%,
+    hsl(var(--accent)) 100%
+  );
+}
+
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px -10px hsl(var(--primary) / 0.4);
+}
+
+.card-3d {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-3d:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px -8px hsl(var(--primary) / 0.3);
+}
+
+/* Grid Pattern */
+.bg-grid {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, hsl(var(--primary) / 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--primary) / 0.1) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, black, transparent);
+}
+
+/* Button Styles */
+.button-primary {
+  @apply bg-gradient text-white font-medium px-6 py-3 rounded-lg 
+         hover:opacity-90 transition-all duration-200 
+         focus:ring-2 focus:ring-primary focus:ring-offset-2 
+         focus:outline-none focus:ring-offset-background;
+}
+
+.button-secondary {
+  @apply bg-secondary/80 text-foreground font-medium px-6 py-3 rounded-lg 
+         hover:bg-secondary transition-all duration-200 
+         focus:ring-2 focus:ring-primary focus:ring-offset-2 
+         focus:outline-none focus:ring-offset-background;
+}
+
+/* Section Styles */
+.section-padding {
+  @apply py-20 sm:py-24 md:py-32;
+}
+
+.container-padding {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+/* Spotlight Effect */
+.spotlight {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--x) var(--y),
+    hsl(var(--primary) / 0.15) 0%,
+    transparent 40%
+  );
+}
