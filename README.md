@@ -1,58 +1,66 @@
 # Hamza Shabbeer - Portfolio Website
 
-A modern, responsive portfolio website built with Next.js 13, TypeScript, and Tailwind CSS. This portfolio showcases my projects, skills, and experience as a Full Stack Developer.
+A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS. Features a sleek dark mode design, smooth animations, and interactive elements.
 
 ## 🌟 Features
 
-- **Modern Design**: Clean and professional UI with smooth animations
-- **Responsive**: Fully responsive design that works on all devices
-- **Dark/Light Mode**: Theme switcher with system preference detection
-- **Smooth Scrolling**: Seamless navigation between sections
-- **Interactive UI**: Dynamic animations and transitions using Framer Motion
-- **Contact Form**: Integrated with EmailJS for easy communication
+- **Modern Design**: Clean and professional interface with dark mode support
+- **Responsive Layout**: Fully responsive design that works on all devices
+- **Smooth Animations**: Beautiful animations using Framer Motion
+- **Interactive Elements**: Dynamic particle effects and hover animations
+- **Dark Mode**: Built-in dark mode with system preference detection
+- **Contact Form**: Integrated EmailJS for easy contact functionality
 - **Performance Optimized**: Built with Next.js for optimal performance
 - **Type Safe**: Written in TypeScript for better development experience
 
 ## 🛠️ Built With
 
-- **Framework**: [Next.js 13](https://nextjs.org/)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Icons**: [React Icons](https://react-icons.github.io/react-icons/)
-- **Email Service**: [EmailJS](https://www.emailjs.com/)
-- **Deployment**: [Netlify](https://www.netlify.com/)
+- [Next.js 13](https://nextjs.org/) - React Framework
+- [TypeScript](https://www.typescriptlang.org/) - Programming Language
+- [Tailwind CSS](https://tailwindcss.com/) - CSS Framework
+- [Framer Motion](https://www.framer.com/motion/) - Animation Library
+- [EmailJS](https://www.emailjs.com/) - Email Service
+- [React Icons](https://react-icons.github.io/react-icons/) - Icon Library
 
 ## 🚀 Getting Started
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/hamzashabbeer/my-portfolio.git
-   cd portfolio
-   ```
+### Prerequisites
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+- Node.js (v14 or higher)
+- npm or yarn
 
-3. **Set up environment variables**
-   Create a `.env.local` file in the root directory and add:
-   ```env
-   NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
-   NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
-   NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
-   ```
+### Installation
 
-4. **Run the development server**
-   ```bash
-   npm run dev
-   ```
+1. Clone the repository
+```bash
+git clone https://github.com/hamzashabbeer/my-portfolio.git
+```
 
-5. **Build for production**
-   ```bash
-   npm run build
-   ```
+2. Navigate to the project directory
+```bash
+cd portfolio
+```
+
+3. Install dependencies
+```bash
+npm install
+# or
+yarn install
+```
+
+4. Create a `.env.local` file in the root directory and add your EmailJS credentials:
+```env
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+```
+
+5. Start the development server
+```bash
+npm run dev
+# or
+yarn dev
+```
 
 ## 📂 Project Structure
 
@@ -73,66 +81,51 @@ portfolio/
 │   │   │   ├── projects.tsx
 │   │   │   └── contact.tsx
 │   │   └── ui/
-│   │       └── scroll-to-top.tsx
-│   └── theme-provider.tsx
+│   └── styles/
 ├── public/
-├── package.json
-└── README.md
+└── package.json
 ```
 
-## 🎨 Features & Sections
+## 🎨 Features
 
-- **Navbar**: Responsive navigation with smooth scrolling
-- **Hero**: Dynamic introduction with animated particles
-- **About**: Professional background and expertise
-- **Skills**: Technical skills with progress indicators
-- **Projects**: Showcase of recent projects with links
-- **Contact**: Contact form integrated with EmailJS
-
-## 🔧 Configuration
-
-### EmailJS Setup
-1. Create an account at [EmailJS](https://www.emailjs.com/)
-2. Create an email service
-3. Create an email template
-4. Add your credentials to `.env.local`
-
-### Theme Configuration
-- Default dark theme with light mode option
-- System preference detection
-- Persistent theme storage
+- **Hero Section**: Dynamic particle animation and spotlight effect
+- **About Section**: Professional introduction with skills overview
+- **Skills Section**: Visual representation of technical skills
+- **Projects Section**: Showcase of recent projects with live demos
+- **Contact Section**: EmailJS integrated contact form
+- **Responsive Navigation**: Mobile-friendly navigation with smooth scrolling
+- **Theme Switching**: Dark mode support with smooth transitions
 
 ## 📱 Responsive Design
 
-- Mobile-first approach
-- Breakpoints:
-  - sm: 640px
-  - md: 768px
-  - lg: 1024px
-  - xl: 1280px
-  - 2xl: 1536px
+The portfolio is fully responsive and optimized for:
+- Mobile devices
+- Tablets
+- Laptops
+- Desktop screens
+
+## 🔧 Configuration
+
+### Environment Variables
+
+Create a `.env.local` file with the following variables:
+
+```env
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+```
 
 ## 🚀 Deployment
 
-The site is deployed on Netlify. For deployment:
-
-1. Connect your GitHub repository to Netlify
-2. Configure build settings:
-   - Build command: `npm run build`
-   - Publish directory: `.next`
-3. Add environment variables in Netlify dashboard
+The site is deployed on Netlify. Any push to the main branch will trigger an automatic deployment.
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 📧 Contact
 
-- Email: hamzashabbeer@gmail.com
-- LinkedIn: [Hamza Shabbeer](https://linkedin.com/in/hamza-shabbeer)
-- GitHub: [@hamzashabbeer](https://github.com/hamzashabbeer)
+Hamza Shabbeer - [hamzashabbeer@gmail.com](mailto:hamzashabbeer@gmail.com)
 
-## 🙏 Acknowledgments
-
-- Images from [Unsplash](https://unsplash.com/)
-- Icons from [React Icons](https://react-icons.github.io/react-icons/)
+Project Link: [https://github.com/hamzashabbeer/my-portfolio](https://github.com/hamzashabbeer/my-portfolio)

@@ -253,21 +253,22 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="order-1 lg:order-2 relative"
           >
-            <div className="relative w-72 h-72 sm:w-[400px] sm:h-[400px] mx-auto">
-              {/* Yellow background circle */}
-              <div className="absolute inset-0 rounded-full bg-[#FFD700] opacity-90" />
+            <div className="relative w-72 h-72 sm:w-[500px] sm:h-[500px] mx-auto">
+              <div className="absolute inset-0 animate-morph bg-gradient-to-r from-primary/20 to-secondary/20 blur-3xl animate-pulse" />
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-secondary rounded-full opacity-30 blur animate-pulse" />
+              <div className="absolute inset-0 bg-gradient-to-r from-background to-background/50 animate-morph" />
               
               {/* Main Image */}
-              <div className="relative w-full h-full overflow-hidden rounded-full border-4 border-background/10">
-                <Image
-                  src="https://i.ibb.co/Qj9qVXG/1721575008578.png"
-                  alt="Hamza Shabbeer"
-                  fill
-                  className="object-cover object-center"
-                  sizes="(max-width: 640px) 288px, 400px"
-                  priority
-                  quality={100}
-                />
+              <div className="relative w-full h-full overflow-hidden animate-morph">
+                <div className="w-full h-full relative animate-float">
+                  <Image
+                    src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1000&auto=format&fit=crop"
+                    alt="Hamza Shabbeer"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
               </div>
 
               {/* Floating Badges */}
