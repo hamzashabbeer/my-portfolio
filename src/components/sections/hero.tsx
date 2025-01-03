@@ -258,13 +258,15 @@ export function Hero() {
               <div className="absolute inset-0 rounded-full bg-[#FFD700] opacity-90" />
               
               {/* Main Image */}
-              <div className="relative w-full h-full overflow-hidden rounded-full">
+              <div className="relative w-full h-full overflow-hidden rounded-full border-4 border-background/10">
                 <Image
-                  src="https://raw.githubusercontent.com/hamzashabbeer/my-portfolio/master/public/images/1721575008578.png"
+                  src="https://i.ibb.co/Qj9qVXG/1721575008578.png"
                   alt="Hamza Shabbeer"
                   fill
-                  className="object-cover scale-95"
+                  className="object-cover object-center"
+                  sizes="(max-width: 640px) 288px, 400px"
                   priority
+                  quality={100}
                 />
               </div>
 
