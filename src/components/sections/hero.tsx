@@ -262,7 +262,7 @@ export function Hero() {
               <div className="relative w-full h-full overflow-hidden animate-morph">
                 <div className="w-full h-full relative animate-float">
                   <Image
-                    src="/profile.png"
+                    src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1000&auto=format&fit=crop"
                     alt="Hamza Shabbeer"
                     fill
                     className="object-cover"

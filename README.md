@@ -1,131 +1,115 @@
 # Hamza Shabbeer - Portfolio Website
 
-A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS. Features a sleek dark mode design, smooth animations, and interactive elements.
+A modern, responsive portfolio website built with Next.js 13, TypeScript, and Tailwind CSS. Features a sleek dark/light theme, smooth animations, and a clean design.
 
 ## 🌟 Features
 
-- **Modern Design**: Clean and professional interface with dark mode support
-- **Responsive Layout**: Fully responsive design that works on all devices
+- **Modern Design**: Clean and professional interface with smooth animations
+- **Responsive**: Fully responsive design that works on all devices
+- **Dark/Light Theme**: Dynamic theme switching with system preference support
 - **Smooth Animations**: Beautiful animations using Framer Motion
-- **Interactive Elements**: Dynamic particle effects and hover animations
-- **Dark Mode**: Built-in dark mode with system preference detection
-- **Contact Form**: Integrated EmailJS for easy contact functionality
-- **Performance Optimized**: Built with Next.js for optimal performance
+- **Contact Form**: Integrated with EmailJS for easy communication
+- **Performance Optimized**: Built with Next.js 13 for optimal performance
 - **Type Safe**: Written in TypeScript for better development experience
 
 ## 🛠️ Built With
 
-- [Next.js 13](https://nextjs.org/) - React Framework
-- [TypeScript](https://www.typescriptlang.org/) - Programming Language
-- [Tailwind CSS](https://tailwindcss.com/) - CSS Framework
-- [Framer Motion](https://www.framer.com/motion/) - Animation Library
-- [EmailJS](https://www.emailjs.com/) - Email Service
-- [React Icons](https://react-icons.github.io/react-icons/) - Icon Library
+- [Next.js 13](https://nextjs.org/) - React framework for production
+- [TypeScript](https://www.typescriptlang.org/) - Static type checking
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [Framer Motion](https://www.framer.com/motion/) - Animation library
+- [EmailJS](https://www.emailjs.com/) - Email service integration
+- [next-themes](https://github.com/pacocoursey/next-themes) - Theme management
 
 ## 🚀 Getting Started
 
-### Prerequisites
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/hamzashabbeer/my-portfolio.git
+   cd portfolio
+   ```
 
-- Node.js (v14 or higher)
-- npm or yarn
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-### Installation
+3. **Set up environment variables**
+   Create a `.env.local` file in the root directory and add:
+   ```env
+   NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+   NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+   NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+   ```
 
-1. Clone the repository
-```bash
-git clone https://github.com/hamzashabbeer/my-portfolio.git
-```
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
 
-2. Navigate to the project directory
-```bash
-cd portfolio
-```
+5. **Build for production**
+   ```bash
+   npm run build
+   ```
 
-3. Install dependencies
-```bash
-npm install
-# or
-yarn install
-```
-
-4. Create a `.env.local` file in the root directory and add your EmailJS credentials:
-```env
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
-```
-
-5. Start the development server
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-## 📂 Project Structure
+## 📋 Project Structure
 
 ```
 portfolio/
 ├── src/
-│   ├── app/
-│   │   ├── layout.tsx
-│   │   ├── page.tsx
-│   │   └── globals.css
-│   ├── components/
-│   │   ├── layout/
-│   │   │   └── navbar.tsx
-│   │   ├── sections/
-│   │   │   ├── hero.tsx
-│   │   │   ├── about.tsx
-│   │   │   ├── skills.tsx
-│   │   │   ├── projects.tsx
-│   │   │   └── contact.tsx
-│   │   └── ui/
-│   └── styles/
-├── public/
-└── package.json
+│   ├── app/                 # App router pages
+│   ├── components/          # React components
+│   │   ├── layout/         # Layout components
+│   │   ├── sections/       # Page sections
+│   │   └── ui/            # UI components
+│   └── styles/             # Global styles
+├── public/                 # Static assets
+└── package.json           # Dependencies and scripts
 ```
 
-## 🎨 Features
+## 📱 Features by Section
 
-- **Hero Section**: Dynamic particle animation and spotlight effect
-- **About Section**: Professional introduction with skills overview
-- **Skills Section**: Visual representation of technical skills
-- **Projects Section**: Showcase of recent projects with live demos
-- **Contact Section**: EmailJS integrated contact form
-- **Responsive Navigation**: Mobile-friendly navigation with smooth scrolling
-- **Theme Switching**: Dark mode support with smooth transitions
+### 🏠 Hero Section
+- Dynamic particle animations
+- Responsive hero image
+- Social media links
+- Call-to-action buttons
 
-## 📱 Responsive Design
+### 👤 About Section
+- Professional introduction
+- Skills overview
+- Animated content reveal
 
-The portfolio is fully responsive and optimized for:
-- Mobile devices
-- Tablets
-- Laptops
-- Desktop screens
+### 💻 Skills Section
+- Technical skills display
+- Progress bars
+- Categorized skills presentation
 
-## 🔧 Configuration
+### 🎯 Projects Section
+- Featured projects showcase
+- Project details and links
+- Technology tags
+- Live demo links
 
-### Environment Variables
+### 📬 Contact Section
+- Contact form with EmailJS integration
+- Form validation
+- Success/error states
+- Social media links
 
-Create a `.env.local` file with the following variables:
+## 🎨 Customization
 
-```env
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
-```
-
-## 🚀 Deployment
-
-The site is deployed on Netlify. Any push to the main branch will trigger an automatic deployment.
+The website can be easily customized by modifying:
+- `globals.css` - Theme colors and global styles
+- `tailwind.config.ts` - Tailwind configuration
+- Component files - Individual section content
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is open source and available under the [MIT License](LICENSE).
 
-## 📧 Contact
+## 🤝 Contact
 
-Hamza Shabbeer - [hamzashabbeer@gmail.com](mailto:hamzashabbeer@gmail.com)
+Hamza Shabbeer - [LinkedIn](https://linkedin.com/in/hamza-shabbeer) - hamzashabbeer@gmail.com
 
 Project Link: [https://github.com/hamzashabbeer/my-portfolio](https://github.com/hamzashabbeer/my-portfolio)
