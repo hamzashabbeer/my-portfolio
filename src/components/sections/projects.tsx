@@ -67,11 +67,14 @@ export function Projects() {
   const [direction, setDirection] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  const visibleProjects = [
-    projects[currentIndex],
-    projects[(currentIndex + 1) % projects.length],
-    projects[(currentIndex + 2) % projects.length],
-  ];
+  const getVisibleProjects = () => {
+    const result = [];
+    for (let i = 0; i < 3; i++) {
+      const index = (currentIndex + i) % projects.length;
+      result.push(projects[index]);
+    }
+    return result;
+  };
 
   const slideVariants = {
     enter: (direction: number) => ({
@@ -160,19 +163,13 @@ export function Projects() {
         </motion.div>
 
         {/* Projects Carousel */}
-        <div className="relative h-[500px] w-full max-w-7xl mx-auto">
-          <div className="grid grid-cols-3 gap-6 absolute inset-0">
-            {visibleProjects.map((project, index) => (
-              <AnimatePresence mode="wait" initial={false} custom={direction} key={`container-${project.title}`}>
-                <motion.div
+        <div className="relative max-w-7xl mx-auto">
+          <div className="relative h-[400px] overflow-hidden">
+            <div className="absolute inset-0 grid grid-cols-3 gap-6">
+              {getVisibleProjects().map((project, index) => (
+                <div
                   key={`${project.title}-${index}`}
-                  custom={direction}
-                  variants={slideVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  onAnimationComplete={() => setIsAnimating(false)}
-                  className="relative h-[450px] bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl rounded-3xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] overflow-hidden group transform-gpu hover:scale-[1.02] transition-all duration-500"
+                  className="group relative bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-6 rounded-2xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-500 overflow-hidden hover:scale-[1.02] transform"
                 >
                   <div className="absolute inset-0 bg-[linear-gradient(40deg,transparent_40%,rgba(255,255,255,0.1)_45%,rgba(255,255,255,0.1)_55%,transparent_60%)] pointer-events-none"></div>
                   
@@ -257,9 +254,9 @@ export function Projects() {
                       </Link>
                     </motion.div>
                   </motion.div>
-                </motion.div>
-              </AnimatePresence>
-            ))}
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Navigation */}
