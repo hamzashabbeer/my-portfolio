@@ -3,12 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { BsArrowRight } from "react-icons/bs";
 
 const navItems = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
   { href: "#projects", label: "Projects" },
-  { href: "#contact", label: "Contact" },
+  { href: "#testimonials", label: "Testimonials" },
 ];
 
 export function Header() {
@@ -31,7 +32,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center gap-4">
             <nav className="flex items-center bg-gradient-to-r from-black/20 to-black/10 backdrop-blur-xl rounded-full p-1.5 border border-white/[0.08] shadow-[inset_0_0_8px_rgba(0,0,0,0.2)]">
               {navItems.map((item) => (
                 <Link
@@ -51,6 +52,19 @@ export function Header() {
                 </Link>
               ))}
             </nav>
+
+            {/* Get Started CTA Button */}
+            <Link
+              href="#contact"
+              className="group relative inline-flex items-center gap-2 px-6 py-2.5 rounded-full overflow-hidden transition-all duration-300"
+            >
+              <div className="absolute inset-0 bg-[conic-gradient(from_var(--shimmer-angle),theme(colors.purple.600)_0%,theme(colors.blue.600)_10%,theme(colors.purple.600)_20%)] animate-[shimmer_2.5s_linear_infinite]" style={{ '--shimmer-angle': '0deg' } as React.CSSProperties} />
+              <div className="absolute inset-[1px] bg-black rounded-full backdrop-blur-xl" />
+              <span className="relative text-white font-medium">
+                Get Started
+                <BsArrowRight className="inline-block ml-2 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -96,6 +110,13 @@ export function Header() {
                       {item.label}
                     </Link>
                   ))}
+                  <Link
+                    href="#contact"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="px-5 py-3 text-sm font-medium rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:scale-[1.02] transform transition-transform duration-200"
+                  >
+                    Get Started
+                  </Link>
                 </nav>
               </motion.div>
             )}
