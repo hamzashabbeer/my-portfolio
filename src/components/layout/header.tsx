@@ -13,26 +13,36 @@ const navItems = [
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState("#home");
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      <div className="container mx-auto px-2 py-0.5">
+      <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-sm font-bold text-gradient">
+          {/* Logo */}
+          <Link 
+            href="/" 
+            className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
+          >
             Hamza Shabbeer
           </Link>
 
-          <nav className="hidden md:flex items-center">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center bg-white/5 backdrop-blur-lg rounded-full p-1.5 border border-white/10">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="relative px-1.5 py-0.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-full group backdrop-blur-sm hover:bg-white/10"
+                onClick={() => setActiveItem(item.href)}
+                className={`relative px-4 py-1.5 text-sm font-medium transition-all duration-300 rounded-full
+                  ${activeItem === item.href 
+                    ? 'text-white bg-gradient-to-r from-primary/90 to-secondary/90 shadow-lg shadow-primary/25'
+                    : 'text-muted-foreground hover:text-white hover:bg-white/10'
+                  }`}
               >
-                <span className="relative z-10">{item.label}</span>
-                <span className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity blur-sm" />
+                {item.label}
               </Link>
             ))}
           </nav>
@@ -57,18 +67,24 @@ export function Header() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="absolute top-full right-0 left-0 p-4 bg-background/80 backdrop-blur-lg border-b border-border md:hidden"
+                className="absolute top-full right-4 left-4 mt-2 p-2 bg-white/10 backdrop-blur-xl rounded-2xl border border-white/10 shadow-xl md:hidden"
               >
-                <nav className="flex flex-col gap-2">
+                <nav className="flex flex-col gap-1">
                   {navItems.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-full hover:bg-white/10 relative group"
-                      onClick={() => setIsMenuOpen(false)}
+                      onClick={() => {
+                        setActiveItem(item.href);
+                        setIsMenuOpen(false);
+                      }}
+                      className={`px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300
+                        ${activeItem === item.href 
+                          ? 'text-white bg-gradient-to-r from-primary/90 to-secondary/90 shadow-lg shadow-primary/25'
+                          : 'text-muted-foreground hover:text-white hover:bg-white/10'
+                        }`}
                     >
-                      <span className="relative z-10">{item.label}</span>
-                      <span className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity blur-sm" />
+                      {item.label}
                     </Link>
                   ))}
                 </nav>
