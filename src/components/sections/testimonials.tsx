@@ -1,9 +1,9 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useRef, useState } from "react";
 import Image from "next/image";
-import { BsLinkedin, BsQuote } from "react-icons/bs";
+import { BsLinkedin, BsQuote, BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 const testimonials = [
   {
@@ -34,6 +34,10 @@ const testimonials = [
 
 export function Testimonials() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
@@ -42,13 +46,51 @@ export function Testimonials() {
   const y = useTransform(scrollYProgress, [0, 1], [-100, 100]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? '100%' : '-100%',
+      opacity: 0,
+      scale: 0.8,
+      filter: 'blur(8px)',
+      transition: {
+        duration: 0.5,
+        ease: [0.4, 0, 0.2, 1],
+      },
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      filter: 'blur(0px)',
+      transition: {
+        duration: 0.5,
+        ease: [0.4, 0, 0.2, 1],
+      },
+    },
+    exit: (direction: number) => ({
+      x: direction < 0 ? '100%' : '-100%',
+      opacity: 0,
+      scale: 0.8,
+      filter: 'blur(8px)',
+      transition: {
+        duration: 0.5,
+        ease: [0.4, 0, 0.2, 1],
+      },
+    }),
+  };
+
+  const paginate = (newDirection: number) => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setDirection(newDirection);
+    setCurrentIndex((prevIndex) => (prevIndex + newDirection + testimonials.length) % testimonials.length);
+    setTimeout(() => setIsAnimating(false), 500);
+  };
+
   return (
-    <section className="py-20 relative" id="testimonials">
+    <section className="py-20 relative -mt-20 -mb-20" id="testimonials">
       {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Animated Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,black,transparent)] animate-[grid_20s_linear_infinite]" />
-        
+      <div className="absolute inset-0">
         {/* Gradient Orbs */}
         <div className="absolute top-0 left-1/4 w-1/2 h-1/2 bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-transparent rounded-full blur-3xl animate-pulse-slow" />
         <div className="absolute bottom-0 right-1/4 w-1/2 h-1/2 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-transparent rounded-full blur-3xl animate-pulse-slow" />
@@ -89,67 +131,107 @@ export function Testimonials() {
           </motion.div>
         </motion.div>
 
-        {/* Testimonials Grid */}
-        <motion.div 
-          style={{ y, opacity }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={testimonial.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-              className="group relative"
-            >
-              {/* Card */}
-              <div className="relative bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-6 rounded-2xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-500 h-full overflow-hidden transform hover:scale-[1.02] hover:-rotate-1">
-                {/* Background Effects */}
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))] animate-pulse-slow" />
-                
-                {/* Quote Icon */}
-                <div className="absolute -top-2 -left-2 text-purple-500/20 transform -scale-x-100">
-                  <BsQuote className="w-16 h-16" />
-                </div>
+        {/* Testimonials Carousel */}
+        <div className="relative max-w-4xl mx-auto">
+          <div className="relative h-[400px] overflow-hidden">
+            <AnimatePresence mode="wait" initial={false} custom={direction}>
+              <motion.div
+                key={currentIndex}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                className="absolute inset-0"
+              >
+                {/* Card */}
+                <div className="relative bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-8 rounded-2xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-500 h-full overflow-hidden">
+                  {/* Background Effects */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))] animate-pulse-slow" />
+                  
+                  {/* Quote Icon */}
+                  <div className="absolute -top-2 -left-2 text-purple-500/20 transform -scale-x-100">
+                    <BsQuote className="w-16 h-16" />
+                  </div>
 
-                {/* Content */}
-                <div className="relative space-y-4">
-                  <p className="text-gray-300 leading-relaxed mb-6 pt-4">
-                    "{testimonial.content}"
-                  </p>
+                  {/* Content */}
+                  <div className="relative space-y-6 flex flex-col h-full">
+                    <p className="text-gray-300 leading-relaxed text-lg flex-grow">
+                      "{testimonials[currentIndex].content}"
+                    </p>
 
-                  {/* Author Info */}
-                  <div className="flex items-center gap-4">
-                    <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-purple-500/50 transition-colors">
-                      <Image
-                        src={testimonial.image}
-                        alt={testimonial.author}
-                        fill
-                        className="object-cover"
-                      />
+                    {/* Author Info */}
+                    <div className="flex items-center gap-4">
+                      <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-purple-500/50 transition-colors">
+                        <Image
+                          src={testimonials[currentIndex].image}
+                          alt={testimonials[currentIndex].author}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div>
+                        <h4 className="text-white font-medium text-lg">{testimonials[currentIndex].author}</h4>
+                        <p className="text-gray-400">{testimonials[currentIndex].position}</p>
+                      </div>
+                      <a
+                        href={testimonials[currentIndex].linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-auto group/link relative w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl border border-white/[0.05] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-300"
+                      >
+                        <div className="absolute inset-0 bg-[conic-gradient(from_var(--shimmer-angle),theme(colors.purple.600)_0%,theme(colors.blue.600)_10%,theme(colors.purple.600)_20%)] animate-[shimmer_2.5s_linear_infinite] opacity-0 group-hover/link:opacity-100 transition-opacity duration-300" style={{ '--shimmer-angle': '0deg' } as React.CSSProperties} />
+                        <div className="absolute inset-[1px] rounded-xl bg-black/50 backdrop-blur-sm group-hover/link:bg-black/30 transition-colors" />
+                        <BsLinkedin className="w-4 h-4 text-white/80 group-hover/link:text-white relative z-10" />
+                      </a>
                     </div>
-                    <div>
-                      <h4 className="text-white font-medium">{testimonial.author}</h4>
-                      <p className="text-sm text-gray-400">{testimonial.position}</p>
-                    </div>
-                    <a
-                      href={testimonial.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="ml-auto group/link relative w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl border border-white/[0.05] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-300"
-                    >
-                      <div className="absolute inset-0 bg-[conic-gradient(from_var(--shimmer-angle),theme(colors.purple.600)_0%,theme(colors.blue.600)_10%,theme(colors.purple.600)_20%)] animate-[shimmer_2.5s_linear_infinite] opacity-0 group-hover/link:opacity-100 transition-opacity duration-300" style={{ '--shimmer-angle': '0deg' } as React.CSSProperties} />
-                      <div className="absolute inset-[1px] rounded-xl bg-black/50 backdrop-blur-sm group-hover/link:bg-black/30 transition-colors" />
-                      <BsLinkedin className="w-4 h-4 text-white/80 group-hover/link:text-white relative z-10" />
-                    </a>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Navigation */}
+          <div className="absolute -left-4 top-1/2 -translate-y-1/2">
+            <button
+              onClick={() => paginate(-1)}
+              className="group relative w-12 h-12 rounded-full flex items-center justify-center overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-[conic-gradient(from_var(--shimmer-angle),theme(colors.purple.600)_0%,theme(colors.blue.600)_10%,theme(colors.purple.600)_20%)] animate-[shimmer_2.5s_linear_infinite] opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ '--shimmer-angle': '0deg' } as React.CSSProperties} />
+              <div className="absolute inset-[1px] rounded-full bg-black/50 backdrop-blur-sm group-hover:bg-black/30 transition-colors" />
+              <BsChevronLeft className="w-6 h-6 text-white/80 group-hover:text-white relative z-10" />
+            </button>
+          </div>
+          <div className="absolute -right-4 top-1/2 -translate-y-1/2">
+            <button
+              onClick={() => paginate(1)}
+              className="group relative w-12 h-12 rounded-full flex items-center justify-center overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-[conic-gradient(from_var(--shimmer-angle),theme(colors.purple.600)_0%,theme(colors.blue.600)_10%,theme(colors.purple.600)_20%)] animate-[shimmer_2.5s_linear_infinite] opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ '--shimmer-angle': '0deg' } as React.CSSProperties} />
+              <div className="absolute inset-[1px] rounded-full bg-black/50 backdrop-blur-sm group-hover:bg-black/30 transition-colors" />
+              <BsChevronRight className="w-6 h-6 text-white/80 group-hover:text-white relative z-10" />
+            </button>
+          </div>
+
+          {/* Progress Dots */}
+          <div className="flex justify-center gap-2 mt-8">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setDirection(index > currentIndex ? 1 : -1);
+                  setCurrentIndex(index);
+                }}
+                className={`h-1 rounded-full transition-all duration-300 ${
+                  index === currentIndex
+                    ? "w-8 bg-gradient-to-r from-purple-500 to-blue-500"
+                    : "w-4 bg-white/20 hover:bg-white/30"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
