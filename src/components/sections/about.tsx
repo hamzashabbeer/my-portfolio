@@ -78,11 +78,14 @@ export function About() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="absolute top-4 -right-4 bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl px-4 py-2 rounded-full border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-300 hover:scale-105"
+                className="absolute top-4 -right-4 bg-gradient-to-r from-purple-600/90 to-blue-600/90 backdrop-blur-xl px-6 py-3 rounded-full border-2 border-white/20 shadow-[0_8px_32px_0_rgba(147,51,234,0.3)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.5)] transition-all duration-300 hover:scale-105 group/badge"
               >
-                <span className="text-sm font-medium bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
+                <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
+                <div className="absolute inset-0 rounded-full animate-pulse-slow bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.2),rgba(255,255,255,0))]" />
+                <span className="relative text-sm font-medium text-white group-hover/badge:text-transparent group-hover/badge:bg-clip-text group-hover/badge:bg-gradient-to-r group-hover/badge:from-purple-200 group-hover/badge:to-blue-200">
                   2+ Years Experience
                 </span>
+                <div className="absolute -inset-[2px] rounded-full bg-gradient-to-r from-purple-500/50 to-blue-500/50 blur-sm opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300" />
               </motion.div>
             </div>
           </motion.div>

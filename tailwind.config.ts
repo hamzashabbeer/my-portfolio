@@ -65,47 +65,54 @@ const config: Config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        spin: {
-          from: { transform: 'rotate(0deg)' },
-          to: { transform: 'rotate(360deg)' },
-        },
         shimmer: {
-          from: { backgroundPosition: '0 0' },
-          to: { backgroundPosition: '-200% 0' },
+          "0%, 100%": {
+            "background-size": "200% 200%",
+            "background-position": "left center",
+          },
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center",
+          },
+        },
+        "gradient-y": {
+          "0%, 100%": {
+            "background-size": "400% 400%",
+            "background-position": "center top",
+          },
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "center center",
+          },
+        },
+        "gradient-x": {
+          "0%, 100%": {
+            "background-size": "200% 200%",
+            "background-position": "left center",
+          },
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center",
+          },
+        },
+        spin: {
+          to: { transform: "rotate(360deg)" },
         },
         pulse: {
-          '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0.5' },
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.5" },
         },
-        'gradient-y': {
-          '0%, 100%': {
-            'background-size': '400% 400%',
-            'background-position': 'center top'
-          },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'center center'
-          }
-        },
-        'gradient-x': {
-          '0%, 100%': {
-            'background-size': '200% 200%',
-            'background-position': 'left center'
-          },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'right center'
-          }
-        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        spin: "spin 2s linear infinite",
-        shimmer: "shimmer 2s linear infinite",
-        pulse: "pulse 3s ease-in-out infinite",
-        'gradient-x': 'gradient-x 15s ease infinite',
-        'gradient-y': 'gradient-y 15s ease infinite',
+        "gradient-x": "gradient-x 15s ease infinite",
+        "gradient-y": "gradient-y 15s ease infinite",
+        "spin": "spin 2s linear infinite",
+        "spin-slow": "spin 8s linear infinite",
+        "shimmer": "shimmer 2.5s linear infinite",
+        "pulse": "pulse 3s ease-in-out infinite",
+        "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
       fontFamily: {
         inter: ['var(--font-inter)', 'sans-serif'],
@@ -116,4 +123,5 @@ const config: Config = {
   },
   plugins: [],
 };
+
 export default config;

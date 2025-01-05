@@ -91,9 +91,14 @@ export function Projects() {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="bg-white/[0.02] backdrop-blur-lg px-2.5 py-1 rounded-full border border-white/[0.05] text-gray-300 text-xs group-hover:text-white transition-colors"
+                      className="group/tag relative bg-gradient-to-r from-purple-600/80 to-blue-600/80 backdrop-blur-xl px-4 py-1.5 rounded-full border border-white/20 text-white text-xs font-medium shadow-[0_4px_12px_0_rgba(147,51,234,0.3)] hover:shadow-[0_4px_12px_0_rgba(147,51,234,0.5)] transition-all duration-300 hover:scale-105"
                     >
-                      {tag}
+                      <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.2),rgba(255,255,255,0))]" />
+                      <div className="absolute inset-0 rounded-full animate-pulse-slow bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))]" />
+                      <span className="relative group-hover/tag:text-transparent group-hover/tag:bg-clip-text group-hover/tag:bg-gradient-to-r group-hover/tag:from-purple-200 group-hover/tag:to-blue-200">
+                        {tag}
+                      </span>
+                      <div className="absolute -inset-[1px] rounded-full bg-gradient-to-r from-purple-500/30 to-blue-500/30 blur-sm opacity-0 group-hover/tag:opacity-100 transition-opacity duration-300" />
                     </span>
                   ))}
                 </div>
