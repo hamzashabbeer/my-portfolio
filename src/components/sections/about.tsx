@@ -64,8 +64,8 @@ export function About() {
               <div className="absolute -inset-4 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full blur-2xl animate-pulse" />
               <div className="absolute inset-0 bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl rounded-3xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] overflow-hidden group">
                 <Image
-                  src="/images/profile.png"
-                  alt="About Me"
+                  src="https://images.unsplash.com/photo-1607705703571-c5a8695f18f6?q=80&w=1470&auto=format&fit=crop"
+                  alt="About Me - Professional Developer"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
@@ -141,10 +141,12 @@ export function About() {
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl px-6 py-3 rounded-full border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-300 hover:scale-105"
+                className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-full overflow-hidden transition-all duration-300"
               >
-                <span className="text-gray-300 group-hover:text-white">View Resume</span>
-                <BsArrowRight className="text-gray-300 group-hover:text-white group-hover:translate-x-1 transition-transform" />
+                <div className="absolute inset-0 bg-[conic-gradient(from_var(--shimmer-angle),theme(colors.purple.600)_0%,theme(colors.blue.600)_10%,theme(colors.purple.600)_20%)] animate-[shimmer_2.5s_linear_infinite] opacity-70" style={{ '--shimmer-angle': '0deg' } as React.CSSProperties} />
+                <div className="absolute inset-[1px] bg-black rounded-full" />
+                <span className="relative text-gray-300 group-hover:text-white">View Resume</span>
+                <BsArrowRight className="relative text-gray-300 group-hover:text-white group-hover:translate-x-1 transition-transform" />
               </a>
             </motion.div>
           </motion.div>

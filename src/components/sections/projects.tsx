@@ -10,7 +10,7 @@ const projects = [
   {
     title: "Modern Portfolio",
     description: "A modern portfolio website built with Next.js, TypeScript, and Tailwind CSS featuring glass morphism and smooth animations.",
-    image: "/images/profile.png",
+    image: "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?q=80&w=1470&auto=format&fit=crop",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     github: "https://github.com/hamzashabbeer/my-portfolio",
     demo: "https://hamzashabbeer.vercel.app",
@@ -18,7 +18,7 @@ const projects = [
   {
     title: "E-Commerce Platform",
     description: "Full-stack e-commerce platform with user authentication, product management, and payment integration.",
-    image: "/images/profile.png",
+    image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=1470&auto=format&fit=crop",
     tags: ["React", "Node.js", "MongoDB", "Stripe"],
     github: "https://github.com/hamzashabbeer/ecommerce",
     demo: "https://ecommerce-demo.vercel.app",
@@ -26,7 +26,7 @@ const projects = [
   {
     title: "Task Management App",
     description: "A collaborative task management application with real-time updates and team features.",
-    image: "/images/profile.png",
+    image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=1472&auto=format&fit=crop",
     tags: ["React", "Firebase", "Material UI", "Redux"],
     github: "https://github.com/hamzashabbeer/taskapp",
     demo: "https://taskapp-demo.vercel.app",
