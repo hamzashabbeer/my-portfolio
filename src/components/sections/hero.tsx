@@ -75,12 +75,28 @@ export function Hero() {
     >
       {/* Dynamic Background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_500px_at_50%_200px,#3b82f6,transparent)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_400px_at_80%_400px,#6366f1,transparent)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_400px_at_20%_300px,#8b5cf6,transparent)]" />
+        {/* Primary gradient orbs */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_800px_at_50%_-100px,#3b82f6,transparent)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_600px_at_80%_300px,#6366f1,transparent)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_600px_at_20%_300px,#8b5cf6,transparent)]" />
+        
+        {/* Animated gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
+        
+        {/* Grid pattern */}
         <div className="absolute inset-0 bg-grid-white/[0.02]" />
+        
+        {/* Noise texture */}
+        <div className="absolute inset-0 bg-noise opacity-10" />
+        
+        {/* Animated glow effects */}
+        <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-blue-500/30 rounded-full filter blur-[128px] animate-pulse" />
+        <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-purple-500/30 rounded-full filter blur-[128px] animate-pulse delay-300" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/30 rounded-full filter blur-[128px] animate-pulse delay-700" />
+
+        {/* Spotlight effect */}
         <div 
-          className="spotlight" 
+          className="spotlight opacity-20" 
           style={{ 
             '--x': `${mousePosition.x}%`, 
             '--y': `${mousePosition.y}%` 
@@ -100,7 +116,7 @@ export function Hero() {
               x: [0, particle.moveX],
               y: [0, particle.moveY],
               opacity: [0, 1, 0],
-              scale: [0, 1.5, 0],
+              scale: [0, 2, 0],
             }}
             transition={{
               duration: particle.duration,
@@ -111,9 +127,30 @@ export function Hero() {
           />
         ))}
 
-        {/* Decorative Elements */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/30 rounded-full filter blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary/30 rounded-full filter blur-3xl animate-pulse delay-1000" />
+        {/* Animated lines */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(5)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"
+              style={{
+                top: `${20 + i * 15}%`,
+                left: 0,
+                right: 0,
+              }}
+              animate={{
+                x: [-1000, 1000],
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                duration: 5 + i,
+                repeat: Infinity,
+                delay: i * 0.5,
+                ease: "linear",
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       <motion.div 

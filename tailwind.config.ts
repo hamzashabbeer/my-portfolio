@@ -73,12 +73,39 @@ const config: Config = {
           from: { backgroundPosition: '0 0' },
           to: { backgroundPosition: '-200% 0' },
         },
+        pulse: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.5' },
+        },
+        'gradient-y': {
+          '0%, 100%': {
+            'background-size': '400% 400%',
+            'background-position': 'center top'
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'center center'
+          }
+        },
+        'gradient-x': {
+          '0%, 100%': {
+            'background-size': '200% 200%',
+            'background-position': 'left center'
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center'
+          }
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         spin: "spin 2s linear infinite",
         shimmer: "shimmer 2s linear infinite",
+        pulse: "pulse 3s ease-in-out infinite",
+        'gradient-x': 'gradient-x 15s ease infinite',
+        'gradient-y': 'gradient-y 15s ease infinite',
       },
       fontFamily: {
         inter: ['var(--font-inter)', 'sans-serif'],
