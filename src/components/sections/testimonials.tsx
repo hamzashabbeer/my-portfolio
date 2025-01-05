@@ -92,7 +92,7 @@ export function Testimonials() {
     const result = [];
     for (let i = 0; i < 3; i++) {
       const index = (currentIndex + i) % testimonials.length;
-      result.push(testimonials[index]);
+      result.push({ ...testimonials[index], position: i });
     }
     return result;
   };
@@ -153,8 +153,15 @@ export function Testimonials() {
                 className="absolute inset-0 grid grid-cols-3 gap-6"
               >
                 {getVisibleTestimonials().map((testimonial, index) => (
-                  <div
+                  <motion.div
                     key={`${testimonial.id}-${index}`}
+                    initial={false}
+                    animate={{ 
+                      x: 0,
+                      opacity: 1,
+                      scale: 1,
+                      transition: { duration: 0.5, delay: index * 0.1 }
+                    }}
                     className="group relative bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-6 rounded-2xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-500 overflow-hidden hover:scale-[1.02]"
                   >
                     {/* Background Effects */}
@@ -198,7 +205,7 @@ export function Testimonials() {
                         </a>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </motion.div>
             </AnimatePresence>
