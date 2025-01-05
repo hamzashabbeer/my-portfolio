@@ -165,50 +165,28 @@ export function Hero() {
             </motion.div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 gap-4">
               {[
-                { value: "2+", label: "Years Experience", icon: "💼", gradient: "from-purple-600 to-blue-600" },
-                { value: "10+", label: "Projects Complete", icon: "🚀", gradient: "from-pink-600 to-purple-600" },
-                { value: "15+", label: "Tech Stack", icon: "⚡", gradient: "from-blue-600 to-cyan-600" },
+                { value: "2+", label: "Years Experience", icon: "💼" },
+                { value: "10+", label: "Projects Complete", icon: "🚀" },
+                { value: "15+", label: "Tech Stack", icon: "⚡" },
               ].map((stat, index) => (
                 <motion.div
                   key={stat.label}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 + index * 0.1 }}
-                  className="group relative bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-6 rounded-2xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-300 hover:scale-105 overflow-hidden"
+                  className="group bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-4 rounded-2xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-300 hover:scale-105"
                 >
-                  {/* Animated Background */}
-                  <div className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-20 transition-opacity duration-500 animate-gradient-xy" style={{ backgroundImage: `linear-gradient(to right, var(--tw-gradient-stops))` }} />
-                  <div className={`absolute inset-[1px] bg-gradient-to-r ${stat.gradient} opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500`} />
-                  
-                  {/* Content */}
-                  <div className="relative flex flex-col items-center gap-3 z-10">
-                    {/* Icon Container */}
-                    <div className="relative">
-                      <div className={`absolute inset-0 bg-gradient-to-r ${stat.gradient} blur-xl opacity-0 group-hover:opacity-70 transition-opacity duration-500`} />
-                      <span className="relative text-3xl transform group-hover:scale-110 transition-transform duration-300 z-10">
-                        {stat.icon}
-                      </span>
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl group-hover:scale-110 transition-transform duration-300">{stat.icon}</span>
+                    <div>
+                      <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 group-hover:from-purple-300 group-hover:to-blue-300">
+                        {stat.value}
+                      </div>
+                      <p className="text-sm text-gray-400 group-hover:text-gray-300">{stat.label}</p>
                     </div>
-
-                    {/* Value */}
-                    <div className={`text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${stat.gradient} transform group-hover:scale-110 transition-transform duration-300`}>
-                      {stat.value}
-                    </div>
-
-                    {/* Label */}
-                    <p className="text-sm text-gray-400 group-hover:text-white transition-colors duration-300">
-                      {stat.label}
-                    </p>
-
-                    {/* Decorative Elements */}
-                    <div className="absolute -top-1 -right-1 w-12 h-12 bg-gradient-to-r from-white/[0.05] to-white/[0.01] rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute -bottom-1 -left-1 w-12 h-12 bg-gradient-to-r from-white/[0.05] to-white/[0.01] rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
-
-                  {/* Border Gradient on Hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-r ${stat.gradient} opacity-0 group-hover:opacity-20 blur-sm transition-opacity duration-500 rounded-2xl`} />
                 </motion.div>
               ))}
             </div>
