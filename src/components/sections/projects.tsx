@@ -48,16 +48,24 @@ export function Projects() {
     enter: (direction: number) => ({
       x: direction > 0 ? '100%' : '-100%',
       opacity: 0,
+      scale: 0.8,
+      filter: 'blur(8px)',
     }),
     center: {
       x: 0,
       opacity: 1,
-      zIndex: 1,
+      scale: 1,
+      filter: 'blur(0px)',
+      transition: {
+        duration: 0.5,
+        ease: [0.4, 0, 0.2, 1],
+      },
     },
     exit: (direction: number) => ({
       x: direction < 0 ? '100%' : '-100%',
       opacity: 0,
-      zIndex: 0,
+      scale: 0.8,
+      filter: 'blur(8px)',
     }),
   };
 
@@ -113,21 +121,37 @@ export function Projects() {
 
         {/* Projects Carousel */}
         <div className="relative h-[500px] w-full max-w-7xl mx-auto">
-          <AnimatePresence initial={false} custom={direction}>
-            <div className="grid grid-cols-3 gap-6">
+          <AnimatePresence mode="wait" initial={false} custom={direction}>
+            <motion.div
+              key={currentIndex}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              className="grid grid-cols-3 gap-6 absolute inset-0"
+            >
               {visibleProjects.map((project, index) => (
                 <motion.div
                   key={`${currentIndex}-${index}`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  transition={{
+                    duration: 0.4,
+                    delay: index * 0.1,
+                    ease: [0.4, 0, 0.2, 1],
+                  }}
                   className="relative h-[450px] bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl rounded-3xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] overflow-hidden group transform-gpu hover:scale-[1.02] transition-all duration-500"
                 >
                   <div className="absolute inset-0 bg-[linear-gradient(40deg,transparent_40%,rgba(255,255,255,0.1)_45%,rgba(255,255,255,0.1)_55%,transparent_60%)] pointer-events-none"></div>
                   
                   {/* Project Image */}
-                  <div className="relative h-[250px] transform-gpu rotate-[-5deg] scale-110 -translate-y-4">
+                  <motion.div 
+                    className="relative h-[250px] transform-gpu rotate-[-5deg] scale-110 -translate-y-4"
+                    initial={{ scale: 1.1, rotate: -5 }}
+                    whileHover={{ scale: 1.15, rotate: -3 }}
+                    transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                  >
                     <Image
                       src={project.image}
                       alt={project.title}
@@ -135,10 +159,15 @@ export function Projects() {
                       className="object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                  </div>
+                  </motion.div>
 
                   {/* Project Content */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent">
+                  <motion.div 
+                    className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
+                  >
                     <h3 className="text-2xl font-bold text-white mb-3">
                       {project.title}
                     </h3>
@@ -149,18 +178,30 @@ export function Projects() {
 
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tags.map((tag) => (
-                        <span
+                      {project.tags.map((tag, tagIndex) => (
+                        <motion.span
                           key={tag}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{
+                            duration: 0.3,
+                            delay: 0.3 + index * 0.1 + tagIndex * 0.05,
+                            ease: [0.4, 0, 0.2, 1],
+                          }}
                           className="px-3 py-1 rounded-full text-xs font-medium text-white bg-white/10 backdrop-blur-sm"
                         >
                           {tag}
-                        </span>
+                        </motion.span>
                       ))}
                     </div>
 
                     {/* Links */}
-                    <div className="flex items-center gap-3">
+                    <motion.div 
+                      className="flex items-center gap-3"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
+                    >
                       <Link
                         href={project.github}
                         target="_blank"
@@ -179,11 +220,11 @@ export function Projects() {
                         <HiOutlineExternalLink className="w-4 h-4" />
                         <span>Demo</span>
                       </Link>
-                    </div>
-                  </div>
+                    </motion.div>
+                  </motion.div>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </AnimatePresence>
 
           {/* Navigation */}
