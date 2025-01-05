@@ -55,15 +55,17 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-2">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="relative px-4 py-2 text-sm font-medium text-foreground/70 hover:text-foreground transition-colors rounded-lg hover:bg-secondary/40"
-              >
-                {item.name}
-              </Link>
-            ))}
+            <nav className="flex items-center gap-1 bg-white/[0.05] backdrop-blur-xl rounded-full p-1.5 border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]">
+              {navItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="relative px-6 py-2 text-sm font-medium transition-all duration-300 rounded-full hover:bg-gradient-to-r from-primary/90 via-primary/80 to-secondary/90 hover:shadow-[0_2px_12px_rgba(147,51,234,0.3)] text-gray-300 hover:text-white hover:scale-105 transform"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </nav>
           </div>
 
           {/* Actions */}
@@ -104,17 +106,25 @@ export function Navbar() {
               transition={{ duration: 0.2 }}
               className="md:hidden mt-4"
             >
-              <div className="bg-secondary/40 backdrop-blur-xl rounded-lg p-2">
+              <div className="bg-white/[0.05] backdrop-blur-xl rounded-2xl p-2 border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]">
                 {navItems.map((item) => (
                   <Link
                     key={item.name}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center w-full px-4 py-2.5 text-sm font-medium text-foreground/70 hover:text-foreground transition-colors rounded-lg hover:bg-secondary/60"
+                    className="flex items-center w-full px-6 py-2.5 text-sm font-medium transition-all duration-300 rounded-xl hover:bg-gradient-to-r from-primary/90 via-primary/80 to-secondary/90 hover:shadow-[0_2px_12px_rgba(147,51,234,0.3)] text-gray-300 hover:text-white hover:scale-[1.02] transform"
                   >
                     {item.name}
                   </Link>
                 ))}
+                <Link
+                  href="#contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center w-full px-6 py-2.5 text-sm font-medium rounded-xl bg-gradient-to-r from-primary to-secondary text-white hover:scale-[1.02] transform transition-all duration-300 shadow-[0_2px_12px_rgba(147,51,234,0.3)] hover:shadow-[0_4px_16px_rgba(147,51,234,0.4)]"
+                >
+                  Get Started
+                  <BsArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </div>
             </motion.div>
           )}
