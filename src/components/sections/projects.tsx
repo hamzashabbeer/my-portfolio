@@ -81,32 +81,35 @@ export function Projects() {
 
       <div className="container mx-auto px-4 relative">
         {/* Section Title */}
-        <div className="relative mb-20">
-          <motion.h3
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 0.1, y: 0 }}
-            viewport={{ once: true }}
-            className="absolute -top-20 left-0 text-8xl font-bold text-white/5"
-          >
-            Projects
-          </motion.h3>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Featured{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500">
+              Projects
+            </span>
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Some of my recent works that showcase my skills and experience
+          </p>
+          {/* Cool Separator */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="relative"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3 }}
+            className="relative h-1 w-24 mx-auto mt-6"
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-4">
-              Featured{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500">
-                Projects
-              </span>
-            </h2>
-            <p className="text-gray-400 mt-6 max-w-2xl">
-              Some of my recent works that showcase my skills and experience.
-            </p>
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 blur-sm" />
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500" />
+            <div className="absolute -top-[2px] left-0 w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
+            <div className="absolute -bottom-[2px] right-0 w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/50 to-blue-500/50 blur-md animate-pulse" />
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* Projects Carousel */}
         <div className="relative h-[500px] w-full max-w-7xl mx-auto">
@@ -187,17 +190,25 @@ export function Projects() {
           <div className="absolute -left-4 top-1/2 -translate-y-1/2 flex items-center gap-4">
             <button
               onClick={() => paginate(-1)}
-              className="w-10 h-10 rounded-full flex items-center justify-center text-white/50 hover:text-white bg-white/5 hover:bg-white/10 transition-colors"
+              className="group relative w-12 h-12 rounded-full flex items-center justify-center overflow-hidden"
             >
-              <BsChevronLeft className="w-5 h-5" />
+              {/* Disco Light Effect */}
+              <div className="absolute inset-0 bg-[conic-gradient(from_var(--shimmer-angle),theme(colors.purple.600)_0%,theme(colors.blue.600)_10%,theme(colors.purple.600)_20%)] animate-[shimmer_2.5s_linear_infinite] opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ '--shimmer-angle': '0deg' } as React.CSSProperties} />
+              <div className="absolute inset-[1px] rounded-full bg-black/50 backdrop-blur-sm group-hover:bg-black/30 transition-colors" />
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full blur group-hover:opacity-100 opacity-0 transition-opacity duration-300" />
+              <BsChevronLeft className="w-6 h-6 text-white/80 group-hover:text-white relative z-10" />
             </button>
           </div>
           <div className="absolute -right-4 top-1/2 -translate-y-1/2 flex items-center gap-4">
             <button
               onClick={() => paginate(1)}
-              className="w-10 h-10 rounded-full flex items-center justify-center text-white/50 hover:text-white bg-white/5 hover:bg-white/10 transition-colors"
+              className="group relative w-12 h-12 rounded-full flex items-center justify-center overflow-hidden"
             >
-              <BsChevronRight className="w-5 h-5" />
+              {/* Disco Light Effect */}
+              <div className="absolute inset-0 bg-[conic-gradient(from_var(--shimmer-angle),theme(colors.purple.600)_0%,theme(colors.blue.600)_10%,theme(colors.purple.600)_20%)] animate-[shimmer_2.5s_linear_infinite] opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ '--shimmer-angle': '0deg' } as React.CSSProperties} />
+              <div className="absolute inset-[1px] rounded-full bg-black/50 backdrop-blur-sm group-hover:bg-black/30 transition-colors" />
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full blur group-hover:opacity-100 opacity-0 transition-opacity duration-300" />
+              <BsChevronRight className="w-6 h-6 text-white/80 group-hover:text-white relative z-10" />
             </button>
           </div>
 
