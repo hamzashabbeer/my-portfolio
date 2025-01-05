@@ -77,13 +77,13 @@ export function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 bg-[#1A1443]/50 backdrop-blur-sm px-4 py-2 rounded-full border border-purple-500/20"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl px-4 py-2 rounded-full border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-300 hover:scale-105 group"
             >
               <span className="relative flex h-3 w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500" />
               </span>
-              <span className="text-sm font-medium text-emerald-400">
+              <span className="text-sm font-medium bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-400 group-hover:from-emerald-300 group-hover:to-teal-300">
                 Available for new projects
               </span>
             </motion.div>
@@ -124,23 +124,23 @@ export function Hero() {
             >
               <Link
                 href="#contact"
-                className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+                className="group relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 hover:scale-105 transition-transform duration-300"
               >
                 <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-6 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-black/80 to-black/60 px-6 py-1 text-sm font-medium text-white backdrop-blur-3xl transition-all duration-300 group-hover:bg-black/50">
                   Contact Me
-                  <BsArrowRight className="ml-2" />
+                  <BsArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </span>
               </Link>
 
               <Link
                 href="#projects"
-                className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+                className="group relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 hover:scale-105 transition-transform duration-300"
               >
                 <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#FF3D9A_0%,#FF9946_50%,#FF3D9A_100%)]" />
-                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-6 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-black/80 to-black/60 px-6 py-1 text-sm font-medium text-white backdrop-blur-3xl transition-all duration-300 group-hover:bg-black/50">
                   View Projects
-                  <BsArrowRight className="ml-2" />
+                  <BsArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </span>
               </Link>
             </motion.div>
@@ -157,15 +157,15 @@ export function Hero() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 + index * 0.1 }}
-                  className="bg-[#1A1443]/50 backdrop-blur-sm p-4 rounded-xl border border-purple-500/20"
+                  className="group bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-4 rounded-2xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-300 hover:scale-105"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-2xl">{stat.icon}</span>
+                    <span className="text-2xl group-hover:scale-110 transition-transform duration-300">{stat.icon}</span>
                     <div>
-                      <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
+                      <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 group-hover:from-purple-300 group-hover:to-blue-300">
                         {stat.value}
                       </div>
-                      <p className="text-sm text-gray-400">{stat.label}</p>
+                      <p className="text-sm text-gray-400 group-hover:text-gray-300">{stat.label}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -185,9 +185,9 @@ export function Hero() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-[#1A1443]/50 p-3 rounded-lg hover:bg-purple-500/20 transition-all duration-300"
+                  className="bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-3 rounded-xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-300 hover:scale-110 group"
                 >
-                  <link.icon className="w-5 h-5" />
+                  <link.icon className="w-5 h-5 group-hover:text-purple-400 transition-colors" />
                 </a>
               ))}
             </motion.div>
@@ -202,7 +202,7 @@ export function Hero() {
           >
             <div className="relative w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] mx-auto">
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500/20 to-blue-500/20 blur-3xl animate-pulse" />
-              <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-purple-500/20">
+              <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]">
                 <Image
                   src="/images/profile.png"
                   alt="Hamza Shabbeer"
@@ -217,18 +217,18 @@ export function Hero() {
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
-                className="absolute top-10 right-0 bg-[#1A1443]/80 backdrop-blur-md px-4 py-2 rounded-full border border-purple-500/20"
+                className="absolute top-10 right-0 bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl px-4 py-2 rounded-full border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-300 hover:scale-105 group"
               >
-                <span className="text-sm font-medium text-purple-400">Full Stack Dev</span>
+                <span className="text-sm font-medium bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 group-hover:from-purple-300 group-hover:to-blue-300">Full Stack Dev</span>
               </motion.div>
 
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.8 }}
-                className="absolute bottom-10 left-0 bg-[#1A1443]/80 backdrop-blur-md px-4 py-2 rounded-full border border-purple-500/20"
+                className="absolute bottom-10 left-0 bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl px-4 py-2 rounded-full border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-300 hover:scale-105 group"
               >
-                <span className="text-sm font-medium text-blue-400">UI/UX Designer</span>
+                <span className="text-sm font-medium bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 group-hover:from-blue-300 group-hover:to-purple-300">UI/UX Designer</span>
               </motion.div>
             </div>
           </motion.div>

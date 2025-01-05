@@ -2,137 +2,132 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import Link from "next/link";
+import { BsGithub, BsArrowRight } from "react-icons/bs";
+import { HiOutlineExternalLink } from "react-icons/hi";
 
 const projects = [
   {
-    title: "Ecommerce Store",
-    description: "A modern e-commerce platform built with Next.js 13, featuring a responsive design, product catalog, shopping cart, and secure checkout process.",
-    image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=1000&auto=format&fit=crop",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "MySQL"],
-    githubUrl: "https://github.com/hamzashabbeer/ecommerce-store",
-    liveUrl: "https://ecommerce-store-demo.vercel.app",
+    title: "Modern Portfolio",
+    description: "A modern portfolio website built with Next.js, TypeScript, and Tailwind CSS featuring glass morphism and smooth animations.",
+    image: "/images/profile.png",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    github: "https://github.com/hamzashabbeer/my-portfolio",
+    demo: "https://hamzashabbeer.vercel.app",
   },
   {
-    title: "Admin Dashboard",
-    description: "A comprehensive admin dashboard for managing e-commerce operations, including product management, order tracking, and analytics.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
-    technologies: ["Next.js", "Shadcn UI", "Clerk Auth", "Prisma", "MySQL"],
-    githubUrl: "https://github.com/hamzashabbeer/admin-dashboard",
-    liveUrl: "https://admin-dashboard-demo.vercel.app",
+    title: "E-Commerce Platform",
+    description: "Full-stack e-commerce platform with user authentication, product management, and payment integration.",
+    image: "/images/profile.png",
+    tags: ["React", "Node.js", "MongoDB", "Stripe"],
+    github: "https://github.com/hamzashabbeer/ecommerce",
+    demo: "https://ecommerce-demo.vercel.app",
   },
   {
-    title: "Portfolio Website",
-    description: "A modern portfolio website showcasing my work and skills, built with Next.js and featuring smooth animations and dark mode support.",
-    image: "https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?q=80&w=1000&auto=format&fit=crop",
-    technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"],
-    githubUrl: "https://github.com/hamzashabbeer/portfolio",
-    liveUrl: "https://hamzashabbeer.vercel.app",
+    title: "Task Management App",
+    description: "A collaborative task management application with real-time updates and team features.",
+    image: "/images/profile.png",
+    tags: ["React", "Firebase", "Material UI", "Redux"],
+    github: "https://github.com/hamzashabbeer/taskapp",
+    demo: "https://taskapp-demo.vercel.app",
   },
-  {
-    title: "Discord Clone",
-    description: "A real-time chat application inspired by Discord, featuring instant messaging, voice channels, and server management.",
-    image: "https://images.unsplash.com/photo-1614680376593-902f74cf0d41?q=80&w=1000&auto=format&fit=crop",
-    technologies: ["Next.js", "Socket.io", "Prisma", "MySQL", "Tailwind"],
-    githubUrl: "https://github.com/hamzashabbeer/discord-clone",
-    liveUrl: "https://discord-clone-demo.vercel.app",
-  },
-  {
-    title: "AI Companion",
-    description: "An AI-powered chat companion built with OpenAI's GPT-3.5, featuring natural language processing and personalized responses.",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000&auto=format&fit=crop",
-    technologies: ["Next.js", "OpenAI API", "Prisma", "Tailwind CSS"],
-    githubUrl: "https://github.com/hamzashabbeer/ai-companion",
-    liveUrl: "https://ai-companion-demo.vercel.app",
-  },
-  {
-    title: "Netflix Clone",
-    description: "A Netflix-inspired streaming platform with user authentication, profile management, and video playback capabilities.",
-    image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=1000&auto=format&fit=crop",
-    technologies: ["Next.js", "MongoDB", "Prisma", "Tailwind CSS"],
-    githubUrl: "https://github.com/hamzashabbeer/netflix-clone",
-    liveUrl: "https://netflix-clone-demo.vercel.app",
-  }
 ];
 
 export function Projects() {
   return (
-    <section id="projects" className="py-20 bg-secondary/30">
-      <div className="container px-4 sm:px-6 lg:px-8">
+    <section className="relative py-20 overflow-hidden" id="projects">
+      <div className="container mx-auto px-4">
+        {/* Section Title */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="space-y-12"
+          className="text-center mb-16"
         >
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl sm:text-4xl font-bold">Featured Projects</h2>
-            <p className="text-muted-foreground max-w-3xl mx-auto">
-              A showcase of my recent full-stack development projects
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group bg-card rounded-xl overflow-hidden border border-border/50 hover:border-primary/50 transition-colors"
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white hover:text-primary transition-colors"
-                      aria-label={`View ${project.title} source code`}
-                    >
-                      <FaGithub className="w-6 h-6" />
-                    </a>
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white hover:text-primary transition-colors"
-                      aria-label={`View ${project.title} live demo`}
-                    >
-                      <FaExternalLinkAlt className="w-6 h-6" />
-                    </a>
-                  </div>
-                </div>
-                <div className="p-6 space-y-4">
-                  <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm line-clamp-2">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-xs px-2 py-1 rounded-full bg-secondary text-secondary-foreground"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Featured{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500">
+              Projects
+            </span>
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Some of my recent works that showcase my skills and experience
+          </p>
         </motion.div>
+
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2 }}
+              className="group bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl rounded-2xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-300 hover:scale-[1.02] overflow-hidden"
+            >
+              {/* Project Image */}
+              <div className="relative h-48 overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              </div>
+
+              {/* Project Content */}
+              <div className="p-6 space-y-4">
+                <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 group-hover:from-purple-300 group-hover:to-blue-300">
+                  {project.title}
+                </h3>
+                <p className="text-gray-400 text-sm group-hover:text-gray-300">
+                  {project.description}
+                </p>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="bg-white/[0.02] backdrop-blur-lg px-2.5 py-1 rounded-full border border-white/[0.05] text-gray-300 text-xs group-hover:text-white transition-colors"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Links */}
+                <div className="flex items-center gap-4 pt-4">
+                  <Link
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-2 rounded-xl border border-white/[0.05] shadow-[0_4px_16px_0_rgba(0,0,0,0.1)] hover:shadow-[0_4px_16px_0_rgba(147,51,234,0.2)] transition-all duration-300 hover:scale-110 group/link"
+                  >
+                    <BsGithub className="w-5 h-5 group-hover/link:text-purple-400" />
+                  </Link>
+                  <Link
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-2 rounded-xl border border-white/[0.05] shadow-[0_4px_16px_0_rgba(0,0,0,0.1)] hover:shadow-[0_4px_16px_0_rgba(147,51,234,0.2)] transition-all duration-300 hover:scale-110 group/link"
+                  >
+                    <HiOutlineExternalLink className="w-5 h-5 group-hover/link:text-purple-400" />
+                  </Link>
+                  <Link
+                    href={`#project-${index}`}
+                    className="ml-auto flex items-center gap-1 text-sm text-gray-400 group-hover:text-white transition-colors"
+                  >
+                    View Details
+                    <BsArrowRight className="group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

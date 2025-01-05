@@ -1,89 +1,104 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaReact, FaNodeJs, FaDatabase } from "react-icons/fa";
-import { SiNextdotjs, SiTailwindcss, SiTypescript, SiMongodb, SiExpress, SiFigma } from "react-icons/si";
 
-const skills = [
-  {
-    category: "Frontend Development",
-    items: [
-      { name: "React.js", icon: FaReact, proficiency: 90 },
-      { name: "Next.js", icon: SiNextdotjs, proficiency: 85 },
-      { name: "TypeScript", icon: SiTypescript, proficiency: 80 },
-      { name: "Tailwind CSS", icon: SiTailwindcss, proficiency: 90 },
-    ],
-  },
-  {
-    category: "Backend Development",
-    items: [
-      { name: "Node.js", icon: FaNodeJs, proficiency: 85 },
-      { name: "Express.js", icon: SiExpress, proficiency: 85 },
-      { name: "MongoDB", icon: SiMongodb, proficiency: 80 },
-      { name: "SQL", icon: FaDatabase, proficiency: 75 },
-    ],
-  },
-  {
-    category: "Design & Tools",
-    items: [
-      { name: "Figma", icon: SiFigma, proficiency: 85 },
-      { name: "UI/UX Design", icon: SiNextdotjs, proficiency: 80 },
-    ],
-  },
-];
+const skillsData = {
+  frontend: [
+    "React.js",
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "HTML/CSS",
+    "JavaScript",
+  ],
+  backend: [
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+    "PostgreSQL",
+    "REST APIs",
+    "GraphQL",
+  ],
+};
 
 export function Skills() {
   return (
-    <section id="skills" className="py-20">
-      <div className="container px-4 sm:px-6 lg:px-8">
+    <section className="relative py-20 overflow-hidden" id="skills">
+      <div className="container mx-auto px-4">
+        {/* Section Title */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="space-y-12"
+          className="text-center mb-16"
         >
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl sm:text-4xl font-bold">Skills & Expertise</h2>
-            <p className="text-muted-foreground max-w-3xl mx-auto">
-              A comprehensive overview of my technical skills and proficiency levels
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {skills.map((skillGroup, groupIndex) => (
-              <motion.div
-                key={skillGroup.category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: groupIndex * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-card rounded-xl p-6 space-y-6"
-              >
-                <h3 className="text-xl font-semibold">{skillGroup.category}</h3>
-                <div className="space-y-4">
-                  {skillGroup.items.map((skill, index) => (
-                    <div key={skill.name} className="space-y-2">
-                      <div className="flex items-center gap-2">
-                        <skill.icon className="w-5 h-5" />
-                        <span>{skill.name}</span>
-                      </div>
-                      <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.proficiency}%` }}
-                          transition={{ duration: 1, delay: index * 0.1 }}
-                          viewport={{ once: true }}
-                          className="h-full bg-primary"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            My{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500">
+              Tech Stack
+            </span>
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Technologies I work with to bring ideas to life
+          </p>
         </motion.div>
+
+        {/* Skills Grid */}
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Frontend Skills */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="group bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-6 rounded-2xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-300 hover:scale-[1.02]"
+          >
+            <div className="flex items-center gap-4 mb-6">
+              <span className="text-3xl group-hover:scale-110 transition-transform duration-300">
+                💻
+              </span>
+              <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 group-hover:from-purple-300 group-hover:to-blue-300">
+                Frontend Development
+              </h3>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {skillsData.frontend.map((skill, index) => (
+                <div
+                  key={skill}
+                  className="bg-white/[0.02] backdrop-blur-lg px-3 py-2 rounded-lg border border-white/[0.05] text-gray-300 text-sm group-hover:text-white transition-colors"
+                >
+                  {skill}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Backend Skills */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="group bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-6 rounded-2xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-300 hover:scale-[1.02]"
+          >
+            <div className="flex items-center gap-4 mb-6">
+              <span className="text-3xl group-hover:scale-110 transition-transform duration-300">
+                ⚡
+              </span>
+              <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 group-hover:from-purple-300 group-hover:to-blue-300">
+                Backend Development
+              </h3>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {skillsData.backend.map((skill, index) => (
+                <div
+                  key={skill}
+                  className="bg-white/[0.02] backdrop-blur-lg px-3 py-2 rounded-lg border border-white/[0.05] text-gray-300 text-sm group-hover:text-white transition-colors"
+                >
+                  {skill}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
