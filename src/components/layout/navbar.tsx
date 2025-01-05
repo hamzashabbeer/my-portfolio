@@ -6,13 +6,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 import { RxMoon, RxSun } from "react-icons/rx";
 import { RiMenu4Line, RiCloseLine } from "react-icons/ri";
+import { BsArrowRight } from "react-icons/bs";
 
 const navItems = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
-  { name: "Contact", href: "#contact" },
+  { name: "Testimonials", href: "#testimonials" },
 ];
 
 export function Navbar() {
@@ -67,19 +68,16 @@ export function Navbar() {
 
           {/* Actions */}
           <div className="flex items-center gap-4">
-            {/* Theme Toggle */}
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2.5 rounded-lg bg-secondary/40 hover:bg-secondary/60 transition-colors"
-              aria-label="Toggle theme"
-              suppressHydrationWarning
+            {/* Get Started CTA */}
+            <Link
+              href="#contact"
+              className="group relative inline-flex items-center gap-2 px-6 py-2.5 rounded-lg overflow-hidden bg-gradient-to-r from-primary to-secondary hover:from-primary/80 hover:to-secondary/80 transition-all duration-300 shadow-[0_2px_12px_rgba(147,51,234,0.3)] hover:shadow-[0_4px_16px_rgba(147,51,234,0.4)]"
             >
-              {mounted && (theme === "dark" ? (
-                <RxSun className="w-5 h-5" />
-              ) : (
-                <RxMoon className="w-5 h-5" />
-              ))}
-            </button>
+              <span className="relative text-white font-medium flex items-center">
+                Get Started
+                <BsArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </Link>
 
             {/* Mobile Menu Button */}
             <button
