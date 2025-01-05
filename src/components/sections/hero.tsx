@@ -77,7 +77,7 @@ export function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-emerald-600/90 to-teal-600/90 backdrop-blur-xl px-6 py-3 rounded-full border-2 border-white/20 shadow-[0_8px_32px_0_rgba(16,185,129,0.3)] hover:shadow-[0_8px_32px_0_rgba(16,185,129,0.5)] transition-all duration-300 hover:scale-105 group/badge"
+              className="inline-flex bg-gradient-to-r from-emerald-600/90 to-teal-600/90 backdrop-blur-xl px-6 py-3 rounded-full border-2 border-white/20 shadow-[0_8px_32px_0_rgba(16,185,129,0.3)] hover:shadow-[0_8px_32px_0_rgba(16,185,129,0.5)] transition-all duration-300 hover:scale-105 group/badge"
             >
               <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_120%,rgba(16,185,129,0.3),rgba(255,255,255,0))]" />
               <div className="absolute inset-0 rounded-full animate-pulse-slow bg-[radial-gradient(circle_at_50%_120%,rgba(16,185,129,0.2),rgba(255,255,255,0))]" />
@@ -94,7 +94,7 @@ export function Hero() {
             </motion.div>
 
             {/* Main Content */}
-            <div className="space-y-4">
+            <div className="space-y-6">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -106,6 +106,20 @@ export function Hero() {
                   Hamza Shabbeer
                 </span>
               </motion.h1>
+
+              {/* Cool Separator */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3 }}
+                className="relative h-1 w-24 mx-auto sm:mx-0"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 blur-sm" />
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500" />
+                <div className="absolute -top-[2px] left-0 w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
+                <div className="absolute -bottom-[2px] right-0 w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/50 to-blue-500/50 blur-md animate-pulse" />
+              </motion.div>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
