@@ -76,50 +76,8 @@ export function Projects() {
     return result;
   };
 
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? '100%' : '-100%',
-      opacity: 0,
-      scale: 0.8,
-      filter: 'blur(8px)',
-      transition: {
-        duration: 0.5,
-        ease: [0.4, 0, 0.2, 1],
-      },
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-      scale: 1,
-      filter: 'blur(0px)',
-      transition: {
-        duration: 0.5,
-        ease: [0.4, 0, 0.2, 1],
-      },
-    },
-    exit: (direction: number) => ({
-      x: direction < 0 ? '100%' : '-100%',
-      opacity: 0,
-      scale: 0.8,
-      filter: 'blur(8px)',
-      transition: {
-        duration: 0.5,
-        ease: [0.4, 0, 0.2, 1],
-      },
-    }),
-  };
-
-  const swipeConfidenceThreshold = 10000;
-  const swipePower = (offset: number, velocity: number) => {
-    return Math.abs(offset) * velocity;
-  };
-
   const paginate = (newDirection: number) => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setDirection(newDirection);
     setCurrentIndex((prevIndex) => (prevIndex + newDirection + projects.length) % projects.length);
-    setTimeout(() => setIsAnimating(false), 500);
   };
 
   return (
@@ -163,100 +121,78 @@ export function Projects() {
         </motion.div>
 
         {/* Projects Carousel */}
-        <div className="relative max-w-7xl mx-auto">
-          <div className="relative h-[400px] overflow-hidden">
-            <div className="absolute inset-0 grid grid-cols-3 gap-6">
-              {getVisibleProjects().map((project, index) => (
-                <div
-                  key={`${project.title}-${index}`}
-                  className="group relative bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-6 rounded-2xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-500 overflow-hidden hover:scale-[1.02] transform"
+        <div className="relative h-[500px] w-full max-w-7xl mx-auto">
+          <div className="grid grid-cols-3 gap-6 absolute inset-0">
+            {getVisibleProjects().map((project, index) => (
+              <div
+                key={`${project.title}-${index}`}
+                className="relative h-[450px] bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl rounded-3xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] overflow-hidden group transform-gpu hover:scale-[1.02] transition-all duration-500"
+              >
+                <div className="absolute inset-0 bg-[linear-gradient(40deg,transparent_40%,rgba(255,255,255,0.1)_45%,rgba(255,255,255,0.1)_55%,transparent_60%)] pointer-events-none"></div>
+                
+                {/* Project Image */}
+                <div 
+                  className="relative h-[250px] transform-gpu rotate-[-5deg] scale-110 -translate-y-4 hover:scale-115 hover:rotate-[-3deg] transition-all duration-400"
                 >
-                  <div className="absolute inset-0 bg-[linear-gradient(40deg,transparent_40%,rgba(255,255,255,0.1)_45%,rgba(255,255,255,0.1)_55%,transparent_60%)] pointer-events-none"></div>
-                  
-                  {/* Project Image */}
-                  <motion.div 
-                    className="relative h-[250px] transform-gpu rotate-[-5deg] scale-110 -translate-y-4"
-                    initial={{ scale: 1.1, rotate: -5 }}
-                    whileHover={{ scale: 1.15, rotate: -3 }}
-                    transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-                  >
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                  </motion.div>
-
-                  {/* Project Content */}
-                  <motion.div 
-                    className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.2 }}
-                  >
-                    <h3 className="text-2xl font-bold text-white mb-3">
-                      {project.title}
-                    </h3>
-                    
-                    <p className="text-gray-300 text-sm leading-relaxed mb-4 line-clamp-2">
-                      {project.description}
-                    </p>
-
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tags.map((tag, tagIndex) => {
-                        const Icon = tag.icon;
-                        return (
-                          <motion.span
-                            key={tag.name}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{
-                              duration: 0.3,
-                              delay: 0.3 + tagIndex * 0.05,
-                              ease: [0.4, 0, 0.2, 1],
-                            }}
-                            className="group flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
-                          >
-                            <Icon className="w-3.5 h-3.5 text-white/70 group-hover:text-white transition-colors" />
-                            {tag.name}
-                          </motion.span>
-                        );
-                      })}
-                    </div>
-
-                    {/* Links */}
-                    <motion.div 
-                      className="flex items-center gap-3"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.3, delay: 0.4 }}
-                    >
-                      <Link
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group/link flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"
-                      >
-                        <BsGithub className="w-4 h-4" />
-                        <span>Code</span>
-                      </Link>
-                      <Link
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group/link flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"
-                      >
-                        <HiOutlineExternalLink className="w-4 h-4" />
-                        <span>Demo</span>
-                      </Link>
-                    </motion.div>
-                  </motion.div>
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                 </div>
-              ))}
-            </div>
+
+                {/* Project Content */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent">
+                  <h3 className="text-2xl font-bold text-white mb-3">
+                    {project.title}
+                  </h3>
+                  
+                  <p className="text-gray-300 text-sm leading-relaxed mb-4 line-clamp-2">
+                    {project.description}
+                  </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tags.map((tag, tagIndex) => {
+                      const Icon = tag.icon;
+                      return (
+                        <span
+                          key={tag.name}
+                          className="group flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
+                        >
+                          <Icon className="w-3.5 h-3.5 text-white/70 group-hover:text-white transition-colors" />
+                          {tag.name}
+                        </span>
+                      );
+                    })}
+                  </div>
+
+                  {/* Links */}
+                  <div className="flex items-center gap-3">
+                    <Link
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/link flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"
+                    >
+                      <BsGithub className="w-4 h-4" />
+                      <span>Code</span>
+                    </Link>
+                    <Link
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/link flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"
+                    >
+                      <HiOutlineExternalLink className="w-4 h-4" />
+                      <span>Demo</span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* Navigation */}
