@@ -71,7 +71,7 @@ export function Hero() {
     <section 
       ref={heroRef}
       id="home" 
-      className="min-h-screen relative overflow-hidden flex items-center pt-10 sm:pt-16"
+      className="min-h-screen relative overflow-hidden flex items-center pt-8 sm:pt-14"
     >
       {/* Dynamic Background */}
       <div className="absolute inset-0 -z-10">

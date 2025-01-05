@@ -18,18 +18,18 @@ export function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      <div className="container mx-auto px-3 py-1.5">
+      <div className="container mx-auto px-2.5 py-1">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-base font-bold text-gradient">
+          <Link href="/" className="text-sm font-bold text-gradient">
             Hamza Shabbeer
           </Link>
 
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-0.5">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="relative px-2.5 py-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-full group backdrop-blur-sm hover:bg-white/10"
+                className="relative px-2 py-0.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-full group backdrop-blur-sm hover:bg-white/10"
               >
                 <span className="relative z-10">{item.label}</span>
                 <span className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity blur-sm" />
