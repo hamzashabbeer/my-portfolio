@@ -92,7 +92,7 @@ export function Testimonials() {
     const result = [];
     for (let i = 0; i < 3; i++) {
       const index = (currentIndex + i) % testimonials.length;
-      result.push({ ...testimonials[index], position: i });
+      result.push(testimonials[index]);
     }
     return result;
   };
@@ -142,73 +142,56 @@ export function Testimonials() {
         {/* Testimonials Carousel */}
         <div className="relative max-w-7xl mx-auto">
           <div className="relative h-[300px] overflow-hidden">
-            <AnimatePresence mode="wait" initial={false} custom={direction}>
-              <motion.div
-                key={currentIndex}
-                custom={direction}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                className="absolute inset-0 grid grid-cols-3 gap-6"
-              >
-                {getVisibleTestimonials().map((testimonial, index) => (
-                  <motion.div
-                    key={`${testimonial.id}-${index}`}
-                    initial={false}
-                    animate={{ 
-                      x: 0,
-                      opacity: 1,
-                      scale: 1,
-                      transition: { duration: 0.5, delay: index * 0.1 }
-                    }}
-                    className="group relative bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-6 rounded-2xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-500 overflow-hidden hover:scale-[1.02]"
-                  >
-                    {/* Background Effects */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))] animate-pulse-slow" />
-                    
-                    {/* Quote Icon */}
-                    <div className="absolute top-6 right-6 text-primary/20">
-                      <FaQuoteRight className="w-12 h-12" />
-                    </div>
+            <div className="absolute inset-0 grid grid-cols-3 gap-6">
+              {getVisibleTestimonials().map((testimonial, index) => (
+                <div
+                  key={`${testimonial.id}-${index}`}
+                  className="group relative bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-6 rounded-2xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-500 overflow-hidden hover:scale-[1.02]"
+                >
+                  {/* Background Effects */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))] animate-pulse-slow" />
+                  
+                  {/* Quote Icon */}
+                  <div className="absolute top-6 right-6 text-primary/20">
+                    <FaQuoteRight className="w-12 h-12" />
+                  </div>
 
-                    {/* Content */}
-                    <div className="relative space-y-4 flex flex-col h-full">
-                      <p className="text-gray-300 leading-relaxed text-sm flex-grow line-clamp-4 pt-4">
-                        "{testimonial.content}"
-                      </p>
+                  {/* Content */}
+                  <div className="relative space-y-4 flex flex-col h-full">
+                    <p className="text-gray-300 leading-relaxed text-sm flex-grow line-clamp-4 pt-4">
+                      "{testimonial.content}"
+                    </p>
 
-                      {/* Author Info */}
-                      <div className="flex items-center gap-3 mt-auto">
-                        <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-purple-500/50 transition-colors">
-                          <Image
-                            src={testimonial.image}
-                            alt={testimonial.author}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                        <div>
-                          <h4 className="text-white font-medium text-sm">{testimonial.author}</h4>
-                          <p className="text-gray-400 text-xs">{testimonial.position}</p>
-                        </div>
-                        <a
-                          href={testimonial.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="ml-auto group/link relative w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl border border-white/[0.05] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-300"
-                        >
-                          <div className="absolute inset-0 bg-[conic-gradient(from_var(--shimmer-angle),theme(colors.purple.600)_0%,theme(colors.blue.600)_10%,theme(colors.purple.600)_20%)] animate-[shimmer_2.5s_linear_infinite] opacity-0 group-hover/link:opacity-100 transition-opacity duration-300" style={{ '--shimmer-angle': '0deg' } as React.CSSProperties} />
-                          <div className="absolute inset-[1px] rounded-lg bg-black/50 backdrop-blur-sm group-hover/link:bg-black/30 transition-colors" />
-                          <BsLinkedin className="w-3.5 h-3.5 text-white/80 group-hover/link:text-white relative z-10" />
-                        </a>
+                    {/* Author Info */}
+                    <div className="flex items-center gap-3 mt-auto">
+                      <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-purple-500/50 transition-colors">
+                        <Image
+                          src={testimonial.image}
+                          alt={testimonial.author}
+                          fill
+                          className="object-cover"
+                        />
                       </div>
+                      <div>
+                        <h4 className="text-white font-medium text-sm">{testimonial.author}</h4>
+                        <p className="text-gray-400 text-xs">{testimonial.position}</p>
+                      </div>
+                      <a
+                        href={testimonial.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-auto group/link relative w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl border border-white/[0.05] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-300"
+                      >
+                        <div className="absolute inset-0 bg-[conic-gradient(from_var(--shimmer-angle),theme(colors.purple.600)_0%,theme(colors.blue.600)_10%,theme(colors.purple.600)_20%)] animate-[shimmer_2.5s_linear_infinite] opacity-0 group-hover/link:opacity-100 transition-opacity duration-300" style={{ '--shimmer-angle': '0deg' } as React.CSSProperties} />
+                        <div className="absolute inset-[1px] rounded-lg bg-black/50 backdrop-blur-sm group-hover/link:bg-black/30 transition-colors" />
+                        <BsLinkedin className="w-3.5 h-3.5 text-white/80 group-hover/link:text-white relative z-10" />
+                      </a>
                     </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Navigation */}
