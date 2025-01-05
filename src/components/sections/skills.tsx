@@ -2,23 +2,37 @@
 
 import { motion } from "framer-motion";
 import { BsCodeSlash, BsServer } from "react-icons/bs";
+import { 
+  SiReact, 
+  SiNextdotjs, 
+  SiTypescript, 
+  SiTailwindcss, 
+  SiHtml5, 
+  SiJavascript,
+  SiNodedotjs,
+  SiExpress,
+  SiMongodb,
+  SiPostgresql,
+  SiGraphql,
+  SiPostman
+} from "react-icons/si";
 
 const skillsData = {
   frontend: [
-    { name: "React.js", level: 90 },
-    { name: "Next.js", level: 85 },
-    { name: "TypeScript", level: 85 },
-    { name: "Tailwind CSS", level: 95 },
-    { name: "HTML/CSS", level: 90 },
-    { name: "JavaScript", level: 90 },
+    { name: "React.js", level: 90, icon: SiReact },
+    { name: "Next.js", level: 85, icon: SiNextdotjs },
+    { name: "TypeScript", level: 85, icon: SiTypescript },
+    { name: "Tailwind CSS", level: 95, icon: SiTailwindcss },
+    { name: "HTML/CSS", level: 90, icon: SiHtml5 },
+    { name: "JavaScript", level: 90, icon: SiJavascript },
   ],
   backend: [
-    { name: "Node.js", level: 85 },
-    { name: "Express.js", level: 85 },
-    { name: "MongoDB", level: 80 },
-    { name: "PostgreSQL", level: 75 },
-    { name: "REST APIs", level: 90 },
-    { name: "GraphQL", level: 75 },
+    { name: "Node.js", level: 85, icon: SiNodedotjs },
+    { name: "Express.js", level: 85, icon: SiExpress },
+    { name: "MongoDB", level: 80, icon: SiMongodb },
+    { name: "PostgreSQL", level: 75, icon: SiPostgresql },
+    { name: "REST APIs", level: 90, icon: SiPostman },
+    { name: "GraphQL", level: 75, icon: SiGraphql },
   ],
 };
 
@@ -96,9 +110,14 @@ export function Skills() {
                     className="relative"
                   >
                     <div className="flex justify-between mb-1">
-                      <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
-                        {skill.name}
-                      </span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-gray-300 group-hover:text-white transition-colors">
+                          {skill.icon && <skill.icon className="w-4 h-4 text-gray-400 group-hover:text-gray-300 transition-colors" />}
+                        </span>
+                        <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
+                          {skill.name}
+                        </span>
+                      </div>
                       <span className="text-sm font-medium text-gray-400 group-hover:text-gray-300 transition-colors">
                         {skill.level}%
                       </span>
@@ -151,9 +170,14 @@ export function Skills() {
                     className="relative"
                   >
                     <div className="flex justify-between mb-1">
-                      <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
-                        {skill.name}
-                      </span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-gray-300 group-hover:text-white transition-colors">
+                          {skill.icon && <skill.icon className="w-4 h-4 text-gray-400 group-hover:text-gray-300 transition-colors" />}
+                        </span>
+                        <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
+                          {skill.name}
+                        </span>
+                      </div>
                       <span className="text-sm font-medium text-gray-400 group-hover:text-gray-300 transition-colors">
                         {skill.level}%
                       </span>
