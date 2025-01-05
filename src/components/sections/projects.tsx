@@ -121,26 +121,16 @@ export function Projects() {
 
         {/* Projects Carousel */}
         <div className="relative h-[500px] w-full max-w-7xl mx-auto">
-          <AnimatePresence mode="wait" initial={false} custom={direction}>
-            <motion.div
-              key={currentIndex}
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              className="grid grid-cols-3 gap-6 absolute inset-0"
-            >
-              {visibleProjects.map((project, index) => (
+          <div className="grid grid-cols-3 gap-6 absolute inset-0">
+            {visibleProjects.map((project, index) => (
+              <AnimatePresence mode="wait" initial={false} custom={direction} key={`container-${project.title}`}>
                 <motion.div
-                  key={`${currentIndex}-${index}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.4,
-                    delay: index * 0.1,
-                    ease: [0.4, 0, 0.2, 1],
-                  }}
+                  key={`${project.title}-${index}`}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
                   className="relative h-[450px] bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl rounded-3xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] overflow-hidden group transform-gpu hover:scale-[1.02] transition-all duration-500"
                 >
                   <div className="absolute inset-0 bg-[linear-gradient(40deg,transparent_40%,rgba(255,255,255,0.1)_45%,rgba(255,255,255,0.1)_55%,transparent_60%)] pointer-events-none"></div>
@@ -166,7 +156,7 @@ export function Projects() {
                     className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
+                    transition={{ duration: 0.4, delay: 0.2 }}
                   >
                     <h3 className="text-2xl font-bold text-white mb-3">
                       {project.title}
@@ -185,7 +175,7 @@ export function Projects() {
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{
                             duration: 0.3,
-                            delay: 0.3 + index * 0.1 + tagIndex * 0.05,
+                            delay: 0.3 + tagIndex * 0.05,
                             ease: [0.4, 0, 0.2, 1],
                           }}
                           className="px-3 py-1 rounded-full text-xs font-medium text-white bg-white/10 backdrop-blur-sm"
@@ -200,7 +190,7 @@ export function Projects() {
                       className="flex items-center gap-3"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
+                      transition={{ duration: 0.3, delay: 0.4 }}
                     >
                       <Link
                         href={project.github}
@@ -223,9 +213,9 @@ export function Projects() {
                     </motion.div>
                   </motion.div>
                 </motion.div>
-              ))}
-            </motion.div>
-          </AnimatePresence>
+              </AnimatePresence>
+            ))}
+          </div>
 
           {/* Navigation */}
           <div className="absolute -left-4 top-1/2 -translate-y-1/2 flex items-center gap-4">
