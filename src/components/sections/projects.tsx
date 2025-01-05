@@ -65,6 +65,7 @@ const projects = [
 export function Projects() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [hasInitialized, setHasInitialized] = useState(false);
 
   const visibleProjects = [
     projects[currentIndex],
@@ -85,7 +86,7 @@ export function Projects() {
       scale: 1,
       filter: 'blur(0px)',
       transition: {
-        duration: 0.5,
+        duration: hasInitialized ? 0.5 : 0,
         ease: [0.4, 0, 0.2, 1],
       },
     },
@@ -105,6 +106,7 @@ export function Projects() {
   const paginate = (newDirection: number) => {
     setDirection(newDirection);
     setCurrentIndex((prevIndex) => (prevIndex + newDirection + projects.length) % projects.length);
+    setHasInitialized(true);
   };
 
   return (
@@ -156,7 +158,7 @@ export function Projects() {
                   key={`${project.title}-${index}`}
                   custom={direction}
                   variants={slideVariants}
-                  initial="enter"
+                  initial={hasInitialized ? "enter" : false}
                   animate="center"
                   exit="exit"
                   className="relative h-[450px] bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl rounded-3xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] overflow-hidden group transform-gpu hover:scale-[1.02] transition-all duration-500"
