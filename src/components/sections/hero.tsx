@@ -29,18 +29,44 @@ export function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-[#0A0118]">
+        {/* Base Pattern */}
+        <div className="absolute inset-0 pattern-grid opacity-30" />
+        <div className="absolute inset-0 pattern-dots opacity-20" />
+        <div className="absolute inset-0 pattern-circuit opacity-25" />
+        <div className="absolute inset-0 pattern-noise mix-blend-overlay" />
+        
         {/* Gradient Circles */}
         <div className="absolute top-20 left-0 w-[500px] h-[500px] bg-purple-500/30 rounded-full filter blur-[120px] animate-pulse" />
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-500/30 rounded-full filter blur-[120px] animate-pulse delay-300" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-yellow-500/20 rounded-full filter blur-[120px] animate-pulse delay-700" />
         
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[length:50px_50px]" />
-        
-        {/* Noise Texture */}
-        <div className="absolute inset-0 opacity-30 mix-blend-overlay">
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+        {/* Animated Lines */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(5)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent"
+              style={{
+                top: `${20 + i * 15}%`,
+                left: 0,
+                right: 0,
+              }}
+              animate={{
+                x: [-1000, 1000],
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                duration: 5 + i,
+                repeat: Infinity,
+                delay: i * 0.5,
+                ease: "linear",
+              }}
+            />
+          ))}
         </div>
+
+        {/* Overlay Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
