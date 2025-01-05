@@ -184,30 +184,32 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1 }}
-              className="flex flex-col sm:flex-row gap-4 font-outfit"
+              className="flex flex-col sm:flex-row gap-6 font-outfit"
             >
+              {/* Contact Button */}
               <Link
                 href="#contact"
-                className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 hover:scale-105 transition-transform"
+                className="relative inline-flex h-14 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 hover:scale-105 transition-all duration-300 group"
               >
-                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-background px-8 py-1 text-sm font-medium backdrop-blur-3xl">
-                  <span className="relative z-10 flex items-center gap-2 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary font-semibold text-base">
+                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#51E4B8_0%,#21A1EC_50%,#51E4B8_100%)]" />
+                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-background/80 px-8 py-1 text-sm font-medium backdrop-blur-3xl transition-all duration-300 group-hover:bg-background/40">
+                  <span className="relative z-10 flex items-center gap-2 text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500 font-semibold text-lg group-hover:text-white transition-colors duration-300">
                     Contact Me
-                    <BsArrowRight className="group-hover:translate-x-1 transition-transform text-primary" />
+                    <BsArrowRight className="group-hover:translate-x-1 transition-transform text-teal-400 group-hover:text-white" />
                   </span>
                 </span>
               </Link>
 
+              {/* Projects Button */}
               <Link
                 href="#projects"
-                className="relative inline-flex h-12 overflow-hidden rounded-full group focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 hover:scale-105 transition-transform"
+                className="relative inline-flex h-14 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 hover:scale-105 transition-all duration-300 group"
               >
-                <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#3b82f6_0%,#8b5cf6_50%,#3b82f6_100%)]" />
-                <span className="relative inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-background/80 px-8 py-1 text-sm font-medium backdrop-blur-3xl">
-                  <span className="z-10 flex items-center gap-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 font-semibold text-base">
+                <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#FF3D9A_0%,#FF9946_50%,#FF3D9A_100%)]" />
+                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-background/80 px-8 py-1 text-sm font-medium backdrop-blur-3xl transition-all duration-300 group-hover:bg-background/40">
+                  <span className="relative z-10 flex items-center gap-2 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400 font-semibold text-lg group-hover:text-white transition-colors duration-300">
                     View Projects
-                    <BsArrowRight className="group-hover:translate-x-1 transition-transform" />
+                    <BsArrowRight className="group-hover:translate-x-1 transition-transform text-pink-500 group-hover:text-white" />
                   </span>
                 </span>
               </Link>
