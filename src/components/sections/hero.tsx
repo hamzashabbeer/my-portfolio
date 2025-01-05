@@ -71,11 +71,13 @@ export function Hero() {
     <section 
       ref={heroRef}
       id="home" 
-      className="min-h-screen relative overflow-hidden flex items-center"
+      className="min-h-screen relative overflow-hidden flex items-center pt-28 sm:pt-36"
     >
       {/* Dynamic Background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 gradient-bg opacity-20" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_500px_at_50%_200px,#3b82f6,transparent)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_400px_at_80%_400px,#6366f1,transparent)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_400px_at_20%_300px,#8b5cf6,transparent)]" />
         <div className="absolute inset-0 bg-grid-white/[0.02]" />
         <div 
           className="spotlight" 
@@ -108,10 +110,14 @@ export function Hero() {
             }}
           />
         ))}
+
+        {/* Decorative Elements */}
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/30 rounded-full filter blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary/30 rounded-full filter blur-3xl animate-pulse delay-1000" />
       </div>
 
       <motion.div 
-        className="container px-4 sm:px-6 lg:px-8 py-20 relative"
+        className="container px-4 sm:px-6 lg:px-8 py-12 sm:py-20 relative"
         style={{ y: parallaxY, opacity }}
       >
         {/* Decorative Elements */}
