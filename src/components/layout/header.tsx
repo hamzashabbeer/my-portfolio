@@ -8,6 +8,7 @@ import { BsArrowRight } from "react-icons/bs";
 const navItems = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
+  { href: "#skills", label: "Skills" },
   { href: "#projects", label: "Projects" },
   { href: "#testimonials", label: "Testimonials" },
 ];
@@ -56,13 +57,11 @@ export function Header() {
             {/* Get Started CTA Button */}
             <Link
               href="#contact"
-              className="group relative inline-flex items-center gap-2 px-6 py-2.5 rounded-full overflow-hidden transition-all duration-300"
+              className="group relative inline-flex items-center gap-2 px-6 py-2.5 rounded-full overflow-hidden bg-gradient-to-r from-primary to-secondary hover:from-primary/80 hover:to-secondary/80 transition-all duration-300 shadow-[0_2px_12px_rgba(147,51,234,0.3)] hover:shadow-[0_4px_16px_rgba(147,51,234,0.4)]"
             >
-              <div className="absolute inset-0 bg-[conic-gradient(from_var(--shimmer-angle),theme(colors.purple.600)_0%,theme(colors.blue.600)_10%,theme(colors.purple.600)_20%)] animate-[shimmer_2.5s_linear_infinite]" style={{ '--shimmer-angle': '0deg' } as React.CSSProperties} />
-              <div className="absolute inset-[1px] bg-black rounded-full backdrop-blur-xl" />
-              <span className="relative text-white font-medium">
+              <span className="relative text-white font-medium flex items-center">
                 Get Started
-                <BsArrowRight className="inline-block ml-2 group-hover:translate-x-1 transition-transform" />
+                <BsArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
               </span>
             </Link>
           </div>
