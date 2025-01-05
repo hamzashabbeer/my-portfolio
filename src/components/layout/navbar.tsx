@@ -3,8 +3,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTheme } from "next-themes";
-import { RxMoon, RxSun } from "react-icons/rx";
 import { RiMenu4Line, RiCloseLine } from "react-icons/ri";
 import { BsArrowRight } from "react-icons/bs";
 
@@ -20,7 +18,6 @@ export function Navbar() {
   const [mounted, setMounted] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
@@ -73,7 +70,7 @@ export function Navbar() {
             {/* Get Started CTA */}
             <Link
               href="#contact"
-              className="group relative inline-flex items-center gap-2 px-6 py-2.5 rounded-lg overflow-hidden bg-gradient-to-r from-primary to-secondary hover:from-primary/80 hover:to-secondary/80 transition-all duration-300 shadow-[0_2px_12px_rgba(147,51,234,0.3)] hover:shadow-[0_4px_16px_rgba(147,51,234,0.4)]"
+              className="group relative inline-flex items-center gap-2 px-6 py-2.5 rounded-full overflow-hidden bg-gradient-to-r from-primary to-secondary hover:from-primary/80 hover:to-secondary/80 transition-all duration-300 shadow-[0_2px_12px_rgba(147,51,234,0.3)] hover:shadow-[0_4px_16px_rgba(147,51,234,0.4)]"
             >
               <span className="relative text-white font-medium flex items-center">
                 Get Started

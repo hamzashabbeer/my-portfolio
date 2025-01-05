@@ -113,7 +113,7 @@ export function About() {
             {/* Bio */}
             <div className="bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-6 rounded-2xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-300 space-y-4">
               <p className="text-gray-300 leading-relaxed">
-                Hi there! I'm Hamza Shabbeer, a passionate Full Stack Developer and UI/UX Designer based in Pakistan. I specialize in creating modern web applications that combine beautiful design with efficient functionality.
+                I&apos;m a passionate Full Stack Developer with expertise in modern web technologies.
               </p>
               <p className="text-gray-400">
                 With expertise in both frontend and backend development, I enjoy bringing ideas to life through clean code and intuitive user experiences.

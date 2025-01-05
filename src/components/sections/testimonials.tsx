@@ -160,7 +160,7 @@ export function Testimonials() {
                   {/* Content */}
                   <div className="relative space-y-4 flex flex-col h-full">
                     <p className="text-gray-300 leading-relaxed text-sm flex-grow line-clamp-4 pt-4">
-                      "{testimonial.content}"
+                      &quot;{testimonial.content}&quot;
                     </p>
 
                     {/* Author Info */}

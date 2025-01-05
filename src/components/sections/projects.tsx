@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { BsGithub, BsArrowRight, BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import { BsGithub, BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { HiOutlineExternalLink } from "react-icons/hi";
 import { 
   SiNextdotjs, 
@@ -64,8 +64,6 @@ const projects = [
 
 export function Projects() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
 
   const getVisibleProjects = () => {
     const result = [];
@@ -155,7 +153,7 @@ export function Projects() {
 
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag, tagIndex) => {
+                    {project.tags.map((tag) => {
                       const Icon = tag.icon;
                       return (
                         <span
@@ -227,7 +225,6 @@ export function Projects() {
               <button
                 key={index}
                 onClick={() => {
-                  setDirection(index > currentIndex ? 1 : -1);
                   setCurrentIndex(index);
                 }}
                 className={`h-1 rounded-full transition-all duration-300 ${

@@ -110,7 +110,7 @@ export function Contact() {
             </span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Let's discuss your project and bring your ideas to life
+            Let&apos;s work together to bring your ideas to life
           </p>
           {/* Cool Separator */}
           <motion.div

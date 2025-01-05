@@ -43,27 +43,27 @@ export function Hero() {
         {/* Animated Lines */}
         <div className="absolute inset-0 overflow-hidden">
           {[...Array(5)].map((_, i) => (
-            <motion.div
-              key={i}
+          <motion.div
+            key={i}
               className="absolute h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent"
-              style={{
+            style={{
                 top: `${20 + i * 15}%`,
                 left: 0,
                 right: 0,
-              }}
-              animate={{
+            }}
+            animate={{
                 x: [-1000, 1000],
-                opacity: [0, 1, 0],
-              }}
-              transition={{
+              opacity: [0, 1, 0],
+            }}
+            transition={{
                 duration: 5 + i,
-                repeat: Infinity,
+              repeat: Infinity,
                 delay: i * 0.5,
                 ease: "linear",
-              }}
-            />
-          ))}
-        </div>
+            }}
+          />
+        ))}
+      </div>
 
         {/* Overlay Gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
@@ -74,21 +74,21 @@ export function Hero() {
           {/* Left Content */}
           <div className="space-y-8">
             {/* Available Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
               className="inline-flex bg-gradient-to-r from-emerald-600/90 to-teal-600/90 backdrop-blur-xl px-6 py-3 rounded-full border-2 border-white/20 shadow-[0_8px_32px_0_rgba(16,185,129,0.3)] hover:shadow-[0_8px_32px_0_rgba(16,185,129,0.5)] transition-all duration-300 hover:scale-105 group/badge"
             >
               <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_120%,rgba(16,185,129,0.3),rgba(255,255,255,0))]" />
               <div className="absolute inset-0 rounded-full animate-pulse-slow bg-[radial-gradient(circle_at_50%_120%,rgba(16,185,129,0.2),rgba(255,255,255,0))]" />
               <div className="relative flex items-center gap-2">
-                <span className="relative flex h-3 w-3">
+              <span className="relative flex h-3 w-3">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500" />
                 </span>
                 <span className="relative text-sm font-medium text-white group-hover/badge:text-transparent group-hover/badge:bg-clip-text group-hover/badge:bg-gradient-to-r group-hover/badge:from-emerald-200 group-hover/badge:to-teal-200">
                   Available for new projects
-                </span>
+              </span>
               </div>
               <div className="absolute -inset-[2px] rounded-full bg-gradient-to-r from-emerald-500/50 to-teal-500/50 blur-sm opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300" />
             </motion.div>
@@ -127,7 +127,7 @@ export function Hero() {
                 transition={{ delay: 0.3 }}
                 className="text-xl text-gray-400 max-w-2xl"
               >
-                A passionate{" "}
+                I&apos;m a passionate{" "}
                 <span className="text-purple-400">Full Stack Developer</span> &{" "}
                 <span className="text-blue-400">UI/UX Designer</span> crafting
                 innovative digital solutions
@@ -158,7 +158,7 @@ export function Hero() {
               >
                 <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#FF3D9A_0%,#FF9946_50%,#FF3D9A_100%)]" />
                 <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-black/80 to-black/60 px-6 py-1 text-sm font-medium text-white backdrop-blur-3xl transition-all duration-300 group-hover:bg-black/50">
-                  View Projects
+                View Projects
                   <BsArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </span>
               </Link>
@@ -182,7 +182,7 @@ export function Hero() {
                     <span className="text-2xl group-hover:scale-110 transition-transform duration-300">{stat.icon}</span>
                     <div>
                       <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 group-hover:from-purple-300 group-hover:to-blue-300">
-                        {stat.value}
+                    {stat.value}
                       </div>
                       <p className="text-sm text-gray-400 group-hover:text-gray-300">{stat.label}</p>
                     </div>
@@ -222,14 +222,14 @@ export function Hero() {
             <div className="relative w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] mx-auto">
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500/20 to-blue-500/20 blur-3xl animate-pulse" />
               <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]">
-                <Image
+                  <Image
                   src="/images/profile.png"
-                  alt="Hamza Shabbeer"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
+                    alt="Hamza Shabbeer"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
 
               {/* Floating Tags */}
               <motion.div
@@ -246,9 +246,9 @@ export function Hero() {
                 <div className="absolute -inset-[2px] rounded-full bg-gradient-to-r from-purple-500/50 to-blue-500/50 blur-sm opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300" />
               </motion.div>
 
-              <motion.div
+                <motion.div
                 initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
+                  animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.8 }}
                 className="absolute bottom-10 left-0 bg-gradient-to-r from-blue-600/90 to-purple-600/90 backdrop-blur-xl px-6 py-3 rounded-full border-2 border-white/20 shadow-[0_8px_32px_0_rgba(147,51,234,0.3)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.5)] transition-all duration-300 hover:scale-105 group/badge"
               >
@@ -258,7 +258,7 @@ export function Hero() {
                   UI/UX Designer
                 </span>
                 <div className="absolute -inset-[2px] rounded-full bg-gradient-to-r from-blue-500/50 to-purple-500/50 blur-sm opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300" />
-              </motion.div>
+                </motion.div>
             </div>
           </motion.div>
         </div>
