@@ -65,7 +65,7 @@ const projects = [
 export function Projects() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
-  const [hasInitialized, setHasInitialized] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const visibleProjects = [
     projects[currentIndex],
@@ -79,6 +79,10 @@ export function Projects() {
       opacity: 0,
       scale: 0.8,
       filter: 'blur(8px)',
+      transition: {
+        duration: 0.5,
+        ease: [0.4, 0, 0.2, 1],
+      },
     }),
     center: {
       x: 0,
@@ -86,7 +90,7 @@ export function Projects() {
       scale: 1,
       filter: 'blur(0px)',
       transition: {
-        duration: hasInitialized ? 0.5 : 0,
+        duration: 0.5,
         ease: [0.4, 0, 0.2, 1],
       },
     },
@@ -95,6 +99,10 @@ export function Projects() {
       opacity: 0,
       scale: 0.8,
       filter: 'blur(8px)',
+      transition: {
+        duration: 0.5,
+        ease: [0.4, 0, 0.2, 1],
+      },
     }),
   };
 
@@ -104,9 +112,11 @@ export function Projects() {
   };
 
   const paginate = (newDirection: number) => {
+    if (isAnimating) return;
+    setIsAnimating(true);
     setDirection(newDirection);
     setCurrentIndex((prevIndex) => (prevIndex + newDirection + projects.length) % projects.length);
-    setHasInitialized(true);
+    setTimeout(() => setIsAnimating(false), 500);
   };
 
   return (
@@ -158,9 +168,10 @@ export function Projects() {
                   key={`${project.title}-${index}`}
                   custom={direction}
                   variants={slideVariants}
-                  initial={hasInitialized ? "enter" : false}
+                  initial="enter"
                   animate="center"
                   exit="exit"
+                  onAnimationComplete={() => setIsAnimating(false)}
                   className="relative h-[450px] bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl rounded-3xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] overflow-hidden group transform-gpu hover:scale-[1.02] transition-all duration-500"
                 >
                   <div className="absolute inset-0 bg-[linear-gradient(40deg,transparent_40%,rgba(255,255,255,0.1)_45%,rgba(255,255,255,0.1)_55%,transparent_60%)] pointer-events-none"></div>
