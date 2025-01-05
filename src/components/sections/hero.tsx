@@ -131,13 +131,15 @@ export function Hero() {
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ type: "spring", duration: 0.8 }}
-              className="inline-flex items-center gap-2 glass-effect px-4 py-2 rounded-full hover-lift"
+              className="inline-flex items-center gap-2 glass-effect px-4 py-2 rounded-full hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/20 group border border-emerald-500/20"
             >
               <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 animate-pulse"></span>
               </span>
-              <span className="text-sm font-medium text-gradient font-outfit tracking-wide">Available for new projects</span>
+              <span className="text-sm font-medium bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent group-hover:text-emerald-400 transition-all duration-300 font-outfit tracking-wide">
+                Available for new projects
+              </span>
             </motion.div>
 
             {/* Main Content */}
@@ -340,8 +342,18 @@ export function Hero() {
 
               {/* Floating Badges */}
               {[
-                { text: "Full Stack Dev", position: "right-0 top-10 translate-x-1/4" },
-                { text: "UI/UX Designer", position: "left-0 bottom-10 -translate-x-1/4" },
+                { 
+                  text: "Full Stack Dev", 
+                  position: "right-0 top-10 translate-x-1/4",
+                  gradient: "from-blue-500 to-purple-500",
+                  icon: "💻"
+                },
+                { 
+                  text: "UI/UX Designer", 
+                  position: "left-0 bottom-10 -translate-x-1/4",
+                  gradient: "from-pink-500 to-orange-500",
+                  icon: "🎨"
+                },
               ].map((badge, index) => (
                 <motion.div
                   key={badge.text}
@@ -350,8 +362,16 @@ export function Hero() {
                   transition={{ duration: 0.5, delay: 1.5 + index * 0.2 }}
                   className={`absolute ${badge.position} z-10`}
                 >
-                  <div className="glass-effect px-4 py-2 rounded-full border border-primary/20 shadow-lg backdrop-blur-sm hover:scale-105 transition-transform duration-300">
-                    <p className="text-sm font-medium text-gradient whitespace-nowrap font-outfit tracking-wide">{badge.text}</p>
+                  <div className="relative group">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-primary/50 to-secondary/50 rounded-full blur-lg group-hover:blur-xl transition-all duration-300 group-hover:opacity-100 opacity-75"></div>
+                    <div className="glass-effect px-4 py-2 rounded-full border border-white/[0.2] shadow-lg backdrop-blur-xl hover:scale-105 transition-transform duration-300 relative">
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg">{badge.icon}</span>
+                        <p className={`text-sm font-medium bg-gradient-to-r ${badge.gradient} bg-clip-text text-transparent whitespace-nowrap font-outfit tracking-wide`}>
+                          {badge.text}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
               ))}
