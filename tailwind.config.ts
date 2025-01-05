@@ -95,6 +95,10 @@ const config: Config = {
             "background-position": "right center",
           },
         },
+        grid: {
+          "0%": { transform: "translateY(-50%)" },
+          "100%": { transform: "translateY(0%)" },
+        },
         spin: {
           to: { transform: "rotate(360deg)" },
         },
@@ -113,6 +117,7 @@ const config: Config = {
         "shimmer": "shimmer 2.5s linear infinite",
         "pulse": "pulse 3s ease-in-out infinite",
         "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "grid": "grid 20s linear infinite",
       },
       fontFamily: {
         inter: ['var(--font-inter)', 'sans-serif'],

@@ -1,90 +1,60 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import Image from "next/image";
-import { useState } from "react";
 import { BsLinkedin, BsQuote } from "react-icons/bs";
 
 const testimonials = [
   {
     id: 1,
-    content: "Hamza is an exceptional developer who consistently delivers high-quality work. His attention to detail and ability to create stunning user interfaces is remarkable. Working with him was a pleasure!",
+    content: "Hamza is an exceptional developer who consistently delivers high-quality work. His attention to detail and problem-solving skills are remarkable. Working with him was a great experience!",
     author: "Sarah Johnson",
-    position: "Senior Product Manager at TechCorp",
+    position: "Senior Product Manager at Microsoft",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887&auto=format&fit=crop",
     linkedin: "https://linkedin.com/in/sarah-johnson",
   },
   {
     id: 2,
-    content: "One of the most talented developers I've worked with. Hamza's expertise in both frontend and backend development, combined with his eye for design, makes him a valuable asset to any project.",
+    content: "One of the most talented developers I've worked with. Hamza's ability to understand complex requirements and translate them into elegant solutions is impressive. His work on our project exceeded expectations!",
     author: "Michael Chen",
-    position: "Tech Lead at InnovateSoft",
+    position: "Tech Lead at Google",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop",
     linkedin: "https://linkedin.com/in/michael-chen",
   },
   {
     id: 3,
-    content: "Hamza's work on our project exceeded all expectations. His innovative solutions and commitment to excellence resulted in a product that our users love. Highly recommended!",
+    content: "Hamza brings a perfect blend of technical expertise and creative thinking to every project. His commitment to delivering exceptional results and ability to meet deadlines make him a valuable asset to any team.",
     author: "Emily Rodriguez",
-    position: "UX Director at DesignHub",
+    position: "Engineering Manager at Amazon",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1470&auto=format&fit=crop",
     linkedin: "https://linkedin.com/in/emily-rodriguez",
   },
 ];
 
 export function Testimonials() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
 
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
-      scale: 0.5,
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-      scale: 1,
-    },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
-      scale: 0.5,
-    }),
-  };
-
-  const swipeConfidenceThreshold = 10000;
-  const swipePower = (offset: number, velocity: number) => {
-    return Math.abs(offset) * velocity;
-  };
-
-  const paginate = (newDirection: number) => {
-    setDirection(newDirection);
-    setActiveIndex((prevIndex) => (prevIndex + newDirection + testimonials.length) % testimonials.length);
-  };
+  const y = useTransform(scrollYProgress, [0, 1], [-100, 100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
     <section className="py-20 relative overflow-hidden" id="testimonials">
       {/* Background Effects */}
-      <div className="absolute inset-0">
-        {/* Main gradient */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-br from-purple-500/20 to-transparent rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-gradient-to-br from-blue-500/20 to-transparent rounded-full blur-3xl animate-pulse" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))] animate-pulse-slow" />
         
-        {/* Grid pattern */}
-        <div className="absolute inset-0 bg-grid opacity-30" />
-        
-        {/* Gradient orbs */}
-        <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-br from-purple-500/20 via-blue-500/20 to-transparent opacity-20 blur-3xl rounded-full animate-float" />
-        <div className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-transparent opacity-20 blur-3xl rounded-full animate-float" style={{ animationDelay: '-3s' }} />
-        
-        {/* Noise texture */}
-        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay" />
+        {/* Animated Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,black,transparent)] animate-[grid_20s_linear_infinite]" />
       </div>
 
-      <div className="container mx-auto px-4 relative">
+      <div className="container mx-auto px-4 relative" ref={containerRef}>
         {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -106,145 +76,77 @@ export function Testimonials() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3 }}
-            className="relative h-0.5 w-24 mx-auto mt-6"
+            className="relative h-1 w-24 mx-auto mt-6"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500 to-purple-500/0 blur-sm" />
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-blue-500 to-purple-500/0" />
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/50 to-purple-500/0 blur-md animate-pulse" />
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 blur-sm" />
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500" />
+            <div className="absolute -top-[2px] left-0 w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
+            <div className="absolute -bottom-[2px] right-0 w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/50 to-blue-500/50 blur-md animate-pulse" />
           </motion.div>
         </motion.div>
 
-        {/* Testimonials Carousel */}
-        <div className="relative max-w-4xl mx-auto">
-          <div className="relative h-[400px] overflow-hidden">
-            {/* Large Quote Icon */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-purple-500/10 pointer-events-none">
-              <BsQuote className="w-40 h-40" />
-            </div>
-
-            {/* Testimonial Cards */}
+        {/* Testimonials Grid */}
+        <motion.div 
+          style={{ y, opacity }}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {testimonials.map((testimonial, index) => (
             <motion.div
-              key={activeIndex}
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 },
-              }}
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={1}
-              onDragEnd={(e, { offset, velocity }) => {
-                const swipe = swipePower(offset.x, velocity.x);
-
-                if (swipe < -swipeConfidenceThreshold) {
-                  paginate(1);
-                } else if (swipe > swipeConfidenceThreshold) {
-                  paginate(-1);
-                }
-              }}
-              className="absolute inset-0 flex items-center justify-center"
+              key={testimonial.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2 }}
+              className="group relative"
             >
-              <div className="w-full max-w-3xl">
-                <div className="group relative bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-8 rounded-2xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] overflow-hidden">
-                  {/* Card Background Effects */}
-                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(120,119,198,0.1),rgba(255,255,255,0))] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay" />
-                  
-                  <div className="relative">
-                    {/* Testimonial Content */}
-                    <motion.p 
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.2 }}
-                      className="text-lg text-gray-300 mb-8 italic"
-                    >
-                      "{testimonials[activeIndex].content}"
-                    </motion.p>
+              {/* Card */}
+              <div className="relative bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-6 rounded-2xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-500 h-full overflow-hidden transform hover:scale-[1.02]">
+                {/* Background Effects */}
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))] animate-pulse-slow" />
+                
+                {/* Quote Icon */}
+                <div className="absolute -top-2 -left-2 text-purple-500/20 transform -scale-x-100">
+                  <BsQuote className="w-16 h-16" />
+                </div>
 
-                    {/* Author Info */}
-                    <div className="flex items-center gap-4">
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.3 }}
-                        className="relative w-16 h-16 group"
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/50 to-blue-500/50 rounded-full blur group-hover:blur-xl transition-all duration-500" />
-                        <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/10">
-                          <Image
-                            src={testimonials[activeIndex].image}
-                            alt={testimonials[activeIndex].author}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                      </motion.div>
-                      <div>
-                        <motion.h4
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.4 }}
-                          className="text-lg font-semibold text-white"
-                        >
-                          {testimonials[activeIndex].author}
-                        </motion.h4>
-                        <motion.p
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.5 }}
-                          className="text-sm text-gray-400"
-                        >
-                          {testimonials[activeIndex].position}
-                        </motion.p>
-                        <motion.a
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.6 }}
-                          href={testimonials[activeIndex].linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group/link inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors mt-2"
-                        >
-                          <BsLinkedin className="w-4 h-4" />
-                          <span className="text-sm relative">
-                            View Profile
-                            <span className="absolute inset-x-0 -bottom-0.5 h-px bg-gradient-to-r from-purple-500/0 via-purple-500/70 to-purple-500/0 opacity-0 group-hover/link:opacity-100 transition-opacity" />
-                          </span>
-                        </motion.a>
-                      </div>
+                {/* Content */}
+                <div className="relative space-y-4">
+                  <p className="text-gray-300 leading-relaxed mb-6 pt-4">
+                    "{testimonial.content}"
+                  </p>
+
+                  {/* Author Info */}
+                  <div className="flex items-center gap-4">
+                    <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-white/10">
+                      <Image
+                        src={testimonial.image}
+                        alt={testimonial.author}
+                        fill
+                        className="object-cover"
+                      />
                     </div>
+                    <div>
+                      <h4 className="text-white font-medium">{testimonial.author}</h4>
+                      <p className="text-sm text-gray-400">{testimonial.position}</p>
+                    </div>
+                    <a
+                      href={testimonial.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ml-auto group/link relative w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl border border-white/[0.05] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-300"
+                    >
+                      <div className="absolute inset-0 bg-[conic-gradient(from_var(--shimmer-angle),theme(colors.purple.600)_0%,theme(colors.blue.600)_10%,theme(colors.purple.600)_20%)] animate-[shimmer_2.5s_linear_infinite] opacity-0 group-hover/link:opacity-100 transition-opacity duration-300" style={{ '--shimmer-angle': '0deg' } as React.CSSProperties} />
+                      <div className="absolute inset-[1px] rounded-xl bg-black/50 backdrop-blur-sm group-hover/link:bg-black/30 transition-colors" />
+                      <BsLinkedin className="w-4 h-4 text-white/80 group-hover/link:text-white relative z-10" />
+                    </a>
                   </div>
                 </div>
               </div>
             </motion.div>
-          </div>
-
-          {/* Navigation Dots */}
-          <div className="flex justify-center gap-3 mt-8">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setDirection(index > activeIndex ? 1 : -1);
-                  setActiveIndex(index);
-                }}
-                className={`relative h-2 transition-all duration-300 ${
-                  index === activeIndex
-                    ? "w-8 bg-gradient-to-r from-purple-500 to-blue-500"
-                    : "w-2 bg-white/20 hover:bg-white/30"
-                } rounded-full overflow-hidden group`}
-              >
-                <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay" />
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/50 to-purple-500/0 opacity-0 group-hover:opacity-100 animate-shimmer" />
-              </button>
-            ))}
-          </div>
-        </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
