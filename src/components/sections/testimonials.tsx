@@ -70,10 +70,18 @@ export function Testimonials() {
     <section className="py-20 relative overflow-hidden" id="testimonials">
       {/* Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-br from-purple-500/20 to-transparent rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-gradient-to-br from-blue-500/20 to-transparent rounded-full blur-3xl animate-pulse" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))] animate-pulse-slow" />
-        <div className="absolute inset-0 bg-[linear-gradient(40deg,transparent_40%,rgba(255,255,255,0.1)_45%,rgba(255,255,255,0.1)_55%,transparent_60%)] pointer-events-none"></div>
+        {/* Main gradient */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
+        
+        {/* Grid pattern */}
+        <div className="absolute inset-0 bg-grid opacity-30" />
+        
+        {/* Gradient orbs */}
+        <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-br from-purple-500/20 via-blue-500/20 to-transparent opacity-20 blur-3xl rounded-full animate-float" />
+        <div className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-transparent opacity-20 blur-3xl rounded-full animate-float" style={{ animationDelay: '-3s' }} />
+        
+        {/* Noise texture */}
+        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay" />
       </div>
 
       <div className="container mx-auto px-4 relative">
@@ -143,10 +151,11 @@ export function Testimonials() {
               className="absolute inset-0 flex items-center justify-center"
             >
               <div className="w-full max-w-3xl">
-                <div className="relative bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-8 rounded-2xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] overflow-hidden group">
+                <div className="group relative bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-8 rounded-2xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] overflow-hidden">
                   {/* Card Background Effects */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))] animate-pulse-slow" />
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(120,119,198,0.1),rgba(255,255,255,0))] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay" />
                   
                   <div className="relative">
                     {/* Testimonial Content */}
@@ -165,9 +174,9 @@ export function Testimonials() {
                         initial={{ opacity: 0, scale: 0.5 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.3 }}
-                        className="relative w-16 h-16"
+                        className="relative w-16 h-16 group"
                       >
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full blur animate-pulse" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/50 to-blue-500/50 rounded-full blur group-hover:blur-xl transition-all duration-500" />
                         <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/10">
                           <Image
                             src={testimonials[activeIndex].image}
@@ -201,10 +210,13 @@ export function Testimonials() {
                           href={testimonials[activeIndex].linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors mt-2"
+                          className="group/link inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors mt-2"
                         >
                           <BsLinkedin className="w-4 h-4" />
-                          <span className="text-sm">View Profile</span>
+                          <span className="text-sm relative">
+                            View Profile
+                            <span className="absolute inset-x-0 -bottom-0.5 h-px bg-gradient-to-r from-purple-500/0 via-purple-500/70 to-purple-500/0 opacity-0 group-hover/link:opacity-100 transition-opacity" />
+                          </span>
                         </motion.a>
                       </div>
                     </div>
@@ -223,12 +235,15 @@ export function Testimonials() {
                   setDirection(index > activeIndex ? 1 : -1);
                   setActiveIndex(index);
                 }}
-                className={`h-2 rounded-full transition-all duration-300 ${
+                className={`relative h-2 transition-all duration-300 ${
                   index === activeIndex
                     ? "w-8 bg-gradient-to-r from-purple-500 to-blue-500"
                     : "w-2 bg-white/20 hover:bg-white/30"
-                }`}
-              />
+                } rounded-full overflow-hidden group`}
+              >
+                <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay" />
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/50 to-purple-500/0 opacity-0 group-hover:opacity-100 animate-shimmer" />
+              </button>
             ))}
           </div>
         </div>
