@@ -8,27 +8,27 @@ import { BsLinkedin, BsQuote } from "react-icons/bs";
 const testimonials = [
   {
     id: 1,
-    content: "Hamza is an exceptional developer who consistently delivers high-quality work. His attention to detail and problem-solving skills are remarkable. Working with him was a great experience!",
-    author: "Sarah Johnson",
-    position: "Senior Product Manager at Microsoft",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887&auto=format&fit=crop",
-    linkedin: "https://linkedin.com/in/sarah-johnson",
+    content: "I had the pleasure of working with Hamza on several web development projects. His expertise in React and Next.js is outstanding, and he consistently delivers clean, efficient code. His ability to solve complex problems and attention to detail make him a valuable asset to any development team.",
+    author: "Alex Thompson",
+    position: "Senior Frontend Developer",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop",
+    linkedin: "https://linkedin.com/in/alex-thompson",
   },
   {
     id: 2,
-    content: "One of the most talented developers I've worked with. Hamza's ability to understand complex requirements and translate them into elegant solutions is impressive. His work on our project exceeded expectations!",
-    author: "Michael Chen",
-    position: "Tech Lead at Google",
+    content: "Hamza demonstrated exceptional skills in both frontend and backend development. His work on our e-commerce platform showcased his ability to create seamless user experiences while maintaining robust server-side functionality. A true full-stack developer who goes above and beyond.",
+    author: "David Park",
+    position: "Full Stack Developer",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop",
-    linkedin: "https://linkedin.com/in/michael-chen",
+    linkedin: "https://linkedin.com/in/david-park",
   },
   {
     id: 3,
-    content: "Hamza brings a perfect blend of technical expertise and creative thinking to every project. His commitment to delivering exceptional results and ability to meet deadlines make him a valuable asset to any team.",
-    author: "Emily Rodriguez",
-    position: "Engineering Manager at Amazon",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1470&auto=format&fit=crop",
-    linkedin: "https://linkedin.com/in/emily-rodriguez",
+    content: "Working with Hamza was a fantastic experience. His proficiency in modern web technologies and commitment to best practices resulted in a portfolio website that exceeded our expectations. His communication skills and dedication to project success are truly commendable.",
+    author: "Jessica Chen",
+    position: "UI/UX Designer",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop",
+    linkedin: "https://linkedin.com/in/jessica-chen",
   },
 ];
 
@@ -43,15 +43,18 @@ export function Testimonials() {
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
-    <section className="py-20 relative overflow-hidden" id="testimonials">
+    <section className="py-20 relative" id="testimonials">
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-br from-purple-500/20 to-transparent rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-gradient-to-br from-blue-500/20 to-transparent rounded-full blur-3xl animate-pulse" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))] animate-pulse-slow" />
-        
         {/* Animated Grid Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,black,transparent)] animate-[grid_20s_linear_infinite]" />
+        
+        {/* Gradient Orbs */}
+        <div className="absolute top-0 left-1/4 w-1/2 h-1/2 bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-transparent rounded-full blur-3xl animate-pulse-slow" />
+        <div className="absolute bottom-0 right-1/4 w-1/2 h-1/2 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-transparent rounded-full blur-3xl animate-pulse-slow" />
+        
+        {/* Additional Decorative Elements */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))] animate-pulse-slow" />
       </div>
 
       <div className="container mx-auto px-4 relative" ref={containerRef}>
@@ -69,7 +72,7 @@ export function Testimonials() {
             </span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            What people say about my work and collaboration
+            What fellow developers and clients say about my work
           </p>
           {/* Cool Separator */}
           <motion.div
@@ -101,7 +104,7 @@ export function Testimonials() {
               className="group relative"
             >
               {/* Card */}
-              <div className="relative bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-6 rounded-2xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-500 h-full overflow-hidden transform hover:scale-[1.02]">
+              <div className="relative bg-gradient-to-r from-white/[0.05] to-white/[0.01] backdrop-blur-xl p-6 rounded-2xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_8px_32px_0_rgba(147,51,234,0.2)] transition-all duration-500 h-full overflow-hidden transform hover:scale-[1.02] hover:-rotate-1">
                 {/* Background Effects */}
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))] animate-pulse-slow" />
@@ -119,7 +122,7 @@ export function Testimonials() {
 
                   {/* Author Info */}
                   <div className="flex items-center gap-4">
-                    <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-white/10">
+                    <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-purple-500/50 transition-colors">
                       <Image
                         src={testimonial.image}
                         alt={testimonial.author}
