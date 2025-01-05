@@ -6,13 +6,31 @@ import Image from "next/image";
 import Link from "next/link";
 import { BsGithub, BsArrowRight, BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { HiOutlineExternalLink } from "react-icons/hi";
+import { 
+  SiNextdotjs, 
+  SiTypescript, 
+  SiTailwindcss, 
+  SiFramer,
+  SiReact,
+  SiNodedotjs,
+  SiMongodb,
+  SiStripe,
+  SiFirebase,
+  SiMui,
+  SiRedux
+} from "react-icons/si";
 
 const projects = [
   {
     title: "Modern Portfolio",
     description: "A modern portfolio website built with Next.js, TypeScript, and Tailwind CSS featuring glass morphism and smooth animations.",
     image: "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?q=80&w=1470&auto=format&fit=crop",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    tags: [
+      { name: "Next.js", icon: SiNextdotjs },
+      { name: "TypeScript", icon: SiTypescript },
+      { name: "Tailwind CSS", icon: SiTailwindcss },
+      { name: "Framer Motion", icon: SiFramer },
+    ],
     github: "https://github.com/hamzashabbeer/my-portfolio",
     demo: "https://hamzashabbeer.vercel.app",
   },
@@ -20,7 +38,12 @@ const projects = [
     title: "E-Commerce Platform",
     description: "Full-stack e-commerce platform with user authentication, product management, and payment integration.",
     image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=1470&auto=format&fit=crop",
-    tags: ["React", "Node.js", "MongoDB", "Stripe"],
+    tags: [
+      { name: "React", icon: SiReact },
+      { name: "Node.js", icon: SiNodedotjs },
+      { name: "MongoDB", icon: SiMongodb },
+      { name: "Stripe", icon: SiStripe },
+    ],
     github: "https://github.com/hamzashabbeer/ecommerce",
     demo: "https://ecommerce-demo.vercel.app",
   },
@@ -28,7 +51,12 @@ const projects = [
     title: "Task Management App",
     description: "A collaborative task management application with real-time updates and team features.",
     image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=1472&auto=format&fit=crop",
-    tags: ["React", "Firebase", "Material UI", "Redux"],
+    tags: [
+      { name: "React", icon: SiReact },
+      { name: "Firebase", icon: SiFirebase },
+      { name: "Material UI", icon: SiMui },
+      { name: "Redux", icon: SiRedux },
+    ],
     github: "https://github.com/hamzashabbeer/taskapp",
     demo: "https://taskapp-demo.vercel.app",
   },
@@ -168,21 +196,25 @@ export function Projects() {
 
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tags.map((tag, tagIndex) => (
-                        <motion.span
-                          key={tag}
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{
-                            duration: 0.3,
-                            delay: 0.3 + tagIndex * 0.05,
-                            ease: [0.4, 0, 0.2, 1],
-                          }}
-                          className="px-3 py-1 rounded-full text-xs font-medium text-white bg-white/10 backdrop-blur-sm"
-                        >
-                          {tag}
-                        </motion.span>
-                      ))}
+                      {project.tags.map((tag, tagIndex) => {
+                        const Icon = tag.icon;
+                        return (
+                          <motion.span
+                            key={tag.name}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{
+                              duration: 0.3,
+                              delay: 0.3 + tagIndex * 0.05,
+                              ease: [0.4, 0, 0.2, 1],
+                            }}
+                            className="group flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
+                          >
+                            <Icon className="w-3.5 h-3.5 text-white/70 group-hover:text-white transition-colors" />
+                            {tag.name}
+                          </motion.span>
+                        );
+                      })}
                     </div>
 
                     {/* Links */}
