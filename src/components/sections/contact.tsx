@@ -45,12 +45,35 @@ export function Contact() {
         className="container px-4 sm:px-6 lg:px-8"
       >
         <div className="max-w-2xl mx-auto text-center space-y-12">
-          <div className="space-y-4">
-            <h2 className="text-3xl sm:text-4xl font-bold">Let&apos;s Connect</h2>
-            <p className="text-muted-foreground">
-              Have a project in mind? I&apos;d love to help bring it to life.
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Get in{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500">
+                Touch
+              </span>
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Let's discuss your project and bring your ideas to life
             </p>
-          </div>
+            {/* Cool Separator */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3 }}
+              className="relative h-1 w-24 mx-auto mt-6"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 blur-sm" />
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500" />
+              <div className="absolute -top-[2px] left-0 w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
+              <div className="absolute -bottom-[2px] right-0 w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/50 to-blue-500/50 blur-md animate-pulse" />
+            </motion.div>
+          </motion.div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

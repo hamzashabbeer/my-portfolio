@@ -53,6 +53,19 @@ export function Projects() {
           <p className="text-gray-400 max-w-2xl mx-auto">
             Some of my recent works that showcase my skills and experience
           </p>
+          {/* Cool Separator */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3 }}
+            className="relative h-1 w-24 mx-auto mt-6"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 blur-sm" />
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500" />
+            <div className="absolute -top-[2px] left-0 w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
+            <div className="absolute -bottom-[2px] right-0 w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/50 to-blue-500/50 blur-md animate-pulse" />
+          </motion.div>
         </motion.div>
 
         {/* Projects Grid */}
