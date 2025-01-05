@@ -26,17 +26,23 @@ const socialLinks = [
 ];
 
 // Pre-generate fixed particle positions to avoid hydration mismatch
-const particles = Array.from({ length: 20 }, (_, i) => {
-  const seed = i / 20; // Use index to generate deterministic values
-  return {
-    x: Math.round(seed * 100), // Round to avoid decimal mismatches
-    y: Math.round((seed * 7919) % 100), // Use prime number for better distribution
-    duration: 2 + (seed * 2), // Duration between 2-4 seconds
-    delay: seed * 2, // Delay between 0-2 seconds
-    moveX: Math.round(200 - (seed * 400)), // Movement range -200 to 200
-    moveY: Math.round(200 - ((seed * 7919) % 400)) // Different movement range for Y
-  };
-});
+const FIXED_PARTICLES = [
+  { x: 10, y: 20, duration: 2.5, delay: 0.2, moveX: 100, moveY: 50 },
+  { x: 70, y: 30, duration: 3.0, delay: 0.5, moveX: -150, moveY: 100 },
+  { x: 40, y: 60, duration: 2.8, delay: 0.8, moveX: 120, moveY: -80 },
+  { x: 90, y: 40, duration: 3.2, delay: 0.3, moveX: -100, moveY: 120 },
+  { x: 20, y: 80, duration: 2.6, delay: 0.6, moveX: 140, moveY: -60 },
+  { x: 60, y: 10, duration: 2.9, delay: 0.9, moveX: -130, moveY: 90 },
+  { x: 30, y: 70, duration: 2.7, delay: 0.4, moveX: 110, moveY: -100 },
+  { x: 80, y: 50, duration: 3.1, delay: 0.7, moveX: -120, moveY: 70 },
+  { x: 50, y: 90, duration: 2.4, delay: 1.0, moveX: 130, moveY: -90 },
+  { x: 15, y: 35, duration: 2.8, delay: 0.3, moveX: -110, moveY: 80 },
+  { x: 75, y: 65, duration: 2.6, delay: 0.8, moveX: 120, moveY: -70 },
+  { x: 45, y: 25, duration: 3.0, delay: 0.5, moveX: -140, moveY: 110 },
+  { x: 85, y: 75, duration: 2.7, delay: 0.2, moveX: 150, moveY: -120 },
+  { x: 25, y: 45, duration: 2.9, delay: 0.7, moveX: -100, moveY: 60 },
+  { x: 65, y: 15, duration: 2.5, delay: 1.0, moveX: 130, moveY: -80 }
+];
 
 export function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -80,7 +86,7 @@ export function Hero() {
         />
         
         {/* Animated Particles */}
-        {particles.map((particle, i) => (
+        {FIXED_PARTICLES.map((particle, i) => (
           <motion.div
             key={i}
             className="particle absolute w-1 h-1 bg-primary/50 rounded-full"
@@ -131,7 +137,7 @@ export function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
               </span>
-              <span className="text-sm font-medium text-gradient">Available for new projects</span>
+              <span className="text-sm font-medium text-gradient font-outfit tracking-wide">Available for new projects</span>
             </motion.div>
 
             {/* Main Content */}
@@ -140,7 +146,7 @@ export function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight"
+                className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight font-grotesk tracking-tight"
               >
                 <motion.span
                   initial={{ x: -100, opacity: 0 }}
@@ -165,7 +171,7 @@ export function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.8 }}
-                className="text-xl sm:text-2xl text-muted-foreground max-w-2xl leading-relaxed"
+                className="text-xl sm:text-2xl text-muted-foreground max-w-2xl leading-relaxed font-outfit"
               >
                 A passionate{" "}
                 <span className="text-gradient font-semibold">Full Stack Developer</span> &{" "}
@@ -178,46 +184,103 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1 }}
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-4 font-outfit"
             >
               <Link
                 href="#contact"
-                className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg overflow-hidden animated-border glow-effect hover-lift"
+                className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 hover:scale-105 transition-transform"
               >
-                <span className="relative z-10 text-white font-medium">Contact Me</span>
-                <BsArrowRight className="relative z-10 group-hover:translate-x-1 transition-transform" />
+                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-background px-8 py-1 text-sm font-medium backdrop-blur-3xl">
+                  <span className="relative z-10 flex items-center gap-2 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary font-semibold text-base">
+                    Contact Me
+                    <BsArrowRight className="group-hover:translate-x-1 transition-transform text-primary" />
+                  </span>
+                </span>
               </Link>
+
               <Link
                 href="#projects"
-                className="group inline-flex items-center justify-center gap-2 glass-effect px-8 py-4 rounded-lg hover:bg-secondary/20 transition-all hover-lift"
+                className="relative inline-flex h-12 overflow-hidden rounded-full group focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 hover:scale-105 transition-transform"
               >
-                View Projects
-                <BsArrowRight className="group-hover:translate-x-1 transition-transform" />
+                <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#3b82f6_0%,#8b5cf6_50%,#3b82f6_100%)]" />
+                <span className="relative inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-background/80 px-8 py-1 text-sm font-medium backdrop-blur-3xl">
+                  <span className="z-10 flex items-center gap-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 font-semibold text-base">
+                    View Projects
+                    <BsArrowRight className="group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </span>
               </Link>
             </motion.div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-8 pt-8">
+            <div className="grid grid-cols-3 gap-4 pt-6">
               {[
-                { label: "Experience", value: "2+ Years" },
-                { label: "Projects", value: "10+" },
-                { label: "Technologies", value: "15+" },
+                { 
+                  label: "Experience", 
+                  value: "2+", 
+                  unit: "Years",
+                  icon: "💼",
+                  gradient: "from-blue-600 to-cyan-600" 
+                },
+                { 
+                  label: "Projects", 
+                  value: "10+", 
+                  unit: "Complete",
+                  icon: "🚀",
+                  gradient: "from-purple-600 to-pink-600" 
+                },
+                { 
+                  label: "Tech Stack", 
+                  value: "15+", 
+                  unit: "Skills",
+                  icon: "⚡",
+                  gradient: "from-amber-600 to-orange-600" 
+                },
               ].map((stat) => (
                 <motion.div
                   key={stat.label}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 1.2 }}
-                  className="glass-effect rounded-xl p-4 text-center card-3d hover-lift"
+                  whileHover={{ y: -3, scale: 1.01 }}
+                  className="glass-effect relative overflow-hidden rounded-xl p-3 group hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 border border-white/[0.08]"
                 >
-                  <motion.p
-                    className="text-3xl font-bold text-gradient"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    {stat.value}
-                  </motion.p>
-                  <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
+                  {/* Subtle gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br opacity-[0.08] group-hover:opacity-[0.12] transition-opacity duration-300" 
+                       style={{
+                         backgroundImage: `linear-gradient(to bottom right, var(--primary), var(--secondary))`
+                       }}
+                  />
+                  
+                  {/* Content Container */}
+                  <div className="relative flex items-center gap-3">
+                    {/* Icon with gradient background */}
+                    <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-br from-primary/10 to-secondary/10 border border-white/[0.08]">
+                      <span className="text-base transform group-hover:scale-110 transition-transform duration-300">
+                        {stat.icon}
+                      </span>
+                    </div>
+                    
+                    {/* Text Content */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-baseline gap-1">
+                        <motion.span
+                          className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                        >
+                          {stat.value}
+                        </motion.span>
+                        <span className="text-xs text-muted-foreground/80 font-medium">
+                          {stat.unit}
+                        </span>
+                      </div>
+                      <p className="text-xs font-medium text-muted-foreground truncate">
+                        {stat.label}
+                      </p>
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -254,36 +317,40 @@ export function Hero() {
             className="order-1 lg:order-2 relative"
           >
             <div className="relative w-72 h-72 sm:w-[500px] sm:h-[500px] mx-auto">
-              <div className="absolute inset-0 animate-morph bg-gradient-to-r from-primary/20 to-secondary/20 blur-3xl animate-pulse" />
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-secondary rounded-full opacity-30 blur animate-pulse" />
-              <div className="absolute inset-0 bg-gradient-to-r from-background to-background/50 animate-morph" />
+              {/* Glowing background effects */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-2xl" />
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-secondary/30 rounded-full blur-xl" />
               
-              {/* Main Image */}
-              <div className="relative w-full h-full overflow-hidden animate-morph">
-                <div className="w-full h-full relative animate-float">
+              {/* Main Image Container */}
+              <div className="relative w-full h-full rounded-full overflow-hidden bg-gradient-to-b from-primary/10 to-secondary/10 p-2">
+                <div className="w-full h-full relative rounded-full overflow-hidden border-2 border-primary/20">
                   <Image
-                    src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1000&auto=format&fit=crop"
+                    src="/images/profile.png"
                     alt="Hamza Shabbeer"
                     fill
-                    className="object-cover"
+                    className="object-cover hover:scale-110 transition-all duration-500"
                     priority
+                    sizes="(max-width: 768px) 288px, 500px"
+                    quality={100}
                   />
                 </div>
               </div>
 
               {/* Floating Badges */}
               {[
-                { text: "Full Stack Dev", position: "-right-4 top-1/4" },
-                { text: "UI/UX Designer", position: "-left-4 bottom-1/4" },
+                { text: "Full Stack Dev", position: "right-0 top-10 translate-x-1/4" },
+                { text: "UI/UX Designer", position: "left-0 bottom-10 -translate-x-1/4" },
               ].map((badge, index) => (
                 <motion.div
                   key={badge.text}
                   initial={{ opacity: 0, x: index === 0 ? 50 : -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 1.5 + index * 0.2 }}
-                  className={`absolute ${badge.position} glass-effect px-4 py-2 rounded-lg hover-lift card-3d`}
+                  className={`absolute ${badge.position} z-10`}
                 >
-                  <p className="text-sm font-medium text-gradient">{badge.text}</p>
+                  <div className="glass-effect px-4 py-2 rounded-full border border-primary/20 shadow-lg backdrop-blur-sm hover:scale-105 transition-transform duration-300">
+                    <p className="text-sm font-medium text-gradient whitespace-nowrap font-outfit tracking-wide">{badge.text}</p>
+                  </div>
                 </motion.div>
               ))}
             </div>
