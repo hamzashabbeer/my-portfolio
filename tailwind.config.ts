@@ -95,6 +95,24 @@ const config: Config = {
             "background-position": "right center",
           },
         },
+        "gradient-xy": {
+          "0%, 100%": {
+            "background-size": "400% 400%",
+            "background-position": "left top",
+          },
+          "25%": {
+            "background-size": "400% 400%",
+            "background-position": "right top",
+          },
+          "50%": {
+            "background-size": "400% 400%",
+            "background-position": "right bottom",
+          },
+          "75%": {
+            "background-size": "400% 400%",
+            "background-position": "left bottom",
+          },
+        },
         spin: {
           to: { transform: "rotate(360deg)" },
         },
@@ -108,6 +126,7 @@ const config: Config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "gradient-x": "gradient-x 15s ease infinite",
         "gradient-y": "gradient-y 15s ease infinite",
+        "gradient-xy": "gradient-xy 15s ease infinite",
         "spin": "spin 2s linear infinite",
         "spin-slow": "spin 8s linear infinite",
         "shimmer": "shimmer 2.5s linear infinite",
